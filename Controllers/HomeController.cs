@@ -1,36 +1,40 @@
+// <copyright file="HomeController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 namespace MVCPrueba1.Controllers
 {
+    using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
     using MVCPrueba1.Models;
-    using System.Diagnostics;
 
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return this.View();
         }
 
         [HttpGet("example/{text}")]
         public IActionResult Example(string text)
         {
-            IndexViewModel indexViewModel = new()
+            IndexViewModel indexViewModel = new IndexViewModel()
             {
-                Content = text
+                Content = text,
             };
 
-            return View("Example", indexViewModel);
+            return this.View("Example", indexViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }
