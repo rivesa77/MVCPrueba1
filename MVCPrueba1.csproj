@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -7,11 +6,15 @@
     <UserSecretsId>aspnet-MVCPrueba1-a8a3239c-4e6d-4756-8550-df6d88c864c1</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
-	<EnableNETAnalyzers>true</EnableNETAnalyzers>
-	<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+    <ItemGroup>
+	    <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>	
+	
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.9" />
@@ -20,8 +23,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
-	<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.301" />
-	<PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />	  
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.301" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
   </ItemGroup>
 
 </Project>

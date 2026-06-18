@@ -3,6 +3,9 @@ root = true
 
 
 
+# File header template
+file_header_template = <copyright file="{fileName}" company="Ricardo">\nCopyright (c) Ricardo. All rights reserved.\n</copyright>
+
 #### Core EditorConfig Options ####
 
 # Indentation and spacing
