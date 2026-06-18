@@ -1,7 +1,18 @@
 # Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
+# Deshabilitar análisis de código para todas las subcarpetas de wwwroot
+[wwwroot/**]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
 
+[Views/**]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+
+[Data/**]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
 
 # File header template
 file_header_template = <copyright file="{fileName}" company="Ricardo">\nCopyright (c) Ricardo. All rights reserved.\n</copyright>

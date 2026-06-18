@@ -2,10 +2,14 @@
 // Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
+#pragma warning disable SA1200 // Using directives should be placed correctly
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCPrueba1.Data;
 using MVCPrueba1.Logic.Extensions;
+
+#pragma warning restore SA1200 // Using directives should be placed correctly
 
 var builder = WebApplication.CreateBuilder(args);
 
