@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCPrueba1.Data;
+using MVCPrueba1.Logic.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,11 @@ builder.Services
     .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews();
+
+builder.Services
+    .AddLogic();
 
 var app = builder.Build();
 

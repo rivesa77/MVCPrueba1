@@ -7,15 +7,20 @@ namespace MVCPrueba1.Logic.UseCases.Persons
     using Microsoft.EntityFrameworkCore;
     using MVCPrueba1.Data;
     using MVCPrueba1.Entities;
+    using MVCPrueba1.Logic.UserInfo;
     using ROP;
 
     public class AddPersonUseCase : IAddPersonUseCase
     {
         private readonly ApplicationDbContext applicationDbContext;
+        private readonly IPersonUserDetails personUserDetails;
 
-        public AddPersonUseCase(ApplicationDbContext applicationDbContext)
+        public AddPersonUseCase(
+            ApplicationDbContext applicationDbContext,
+            IPersonUserDetails flagUserDetails)
         {
             this.applicationDbContext = applicationDbContext;
+            this.personUserDetails = flagUserDetails;
         }
 
         public async Task<Result<bool>> Execute(string dni)
@@ -26,7 +31,7 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         private async Task<Result<string>> ValidatePerson(string dni)
         {
             bool flagExist = await this.applicationDbContext.Persons
-                .Where(p => p.DNI.ToLower() == dni.ToLower())
+                .Where(p => p.DNI.Equals(dni, StringComparison.CurrentCultureIgnoreCase))
                 .AnyAsync()
                 .ConfigureAwait(false);
 
@@ -43,7 +48,7 @@ namespace MVCPrueba1.Logic.UseCases.Persons
             PersonEntity personEntity = new PersonEntity()
             {
                 DNI = dni,
-                UserId = flagUserDetails.UserId,
+                UserId = this.personUserDetails.UserId,
             };
 
             await this.applicationDbContext.AddAsync(personEntity);
