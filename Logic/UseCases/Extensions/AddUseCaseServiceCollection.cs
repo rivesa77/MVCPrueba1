@@ -5,13 +5,15 @@
 namespace MVCPrueba1.Logic.UseCases.Extensions
 {
     using MVCPrueba1.Logic.UseCases.Persons;
+    using MVCPrueba1.Logic.UserInfo;
 
     public static class AddUseCaseServiceCollection
     {
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
             services
-                .AddScoped<IAddPersonUseCase, AddPersonUseCase>();
+                .AddScoped<IAddPersonUseCase, AddPersonUseCase>()
+                .AddScoped<IPersonUserDetails, PersonUserDetails>();
 
             return services;
         }

@@ -1,4 +1,4 @@
-﻿// <copyright file="PersonUser.cs" company="Ricardo">
+﻿// <copyright file="PersonUserDetails.cs" company="Ricardo">
 // Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
@@ -6,11 +6,11 @@ namespace MVCPrueba1.Logic.UserInfo
 {
     using System.Security.Claims;
 
-    public class PersonUser : IPersonUserDetails
+    public class PersonUserDetails : IPersonUserDetails
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public PersonUser(IHttpContextAccessor httpContextAccessor)
+        public PersonUserDetails(IHttpContextAccessor httpContextAccessor)
         {
             this.httpContextAccessor = httpContextAccessor;
         }
