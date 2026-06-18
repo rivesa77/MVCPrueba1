@@ -25,6 +25,11 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
         public async Task<Result<bool>> Execute(string dni)
         {
+            if (string.IsNullOrWhiteSpace(dni))
+            {
+                return Result.Failure<bool>("Person DNI is required");
+            }
+
             return await this.ValidatePerson(dni).Bind(x => this.AddPersonToDatabase(x)).ConfigureAwait(false);
         }
 

@@ -8,6 +8,6 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
     public interface IAddPersonUseCase
     {
-        Task<Result<bool>> Execute(string name);
+        Task<Result<bool>> Execute(string dni);
     }
 }
