@@ -5,6 +5,8 @@
 namespace MVCPrueba1.Entities
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Microsoft.AspNetCore.Identity;
 
     public class PersonEntity
     {
@@ -16,5 +18,10 @@ namespace MVCPrueba1.Entities
         public required string Email { get; set; }
 
         public required string Phone { get; set; }
+
+        public virtual IdentityUser User { get; set; }
+
+        [ForeignKey(nameof(User))]
+        public required string UserId { get; set; }
     }
 }
