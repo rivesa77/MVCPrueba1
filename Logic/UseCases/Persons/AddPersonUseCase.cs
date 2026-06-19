@@ -20,11 +20,9 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
         public AddPersonUseCase(
             ApplicationDbContext applicationDbContext,
-            IPersonUserDetails flagUserDetails,
             IPersonsViewModelToPersonEntityConverter converter)
         {
             this.applicationDbContext = applicationDbContext;
-            this.personUserDetails = flagUserDetails;
             this.converter = converter;
         }
 

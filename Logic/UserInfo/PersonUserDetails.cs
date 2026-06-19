@@ -15,7 +15,7 @@ namespace MVCPrueba1.Logic.UserInfo
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public string UserId => this.httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier).Value
+        public string UserId => this.httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
             ?? throw new Exception("This workflow require authentication");
     }
 }

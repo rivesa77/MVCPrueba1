@@ -39,7 +39,7 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         {
             PersonEntity person = await this.ApplicationDbContext
                 .Persons
-                .SingleOrDefaultAsync(p => p.Id == id)
+                .SingleOrDefaultAsync(p => p.Id == id && p.UserId == this.PersonUserDetails.UserId)
                 .ConfigureAwait(false);
 
             if (person is null)
