@@ -4,6 +4,7 @@
 
 namespace MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Extensions
 {
+    using Microsoft.Extensions.DependencyInjection;
     using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Properties;
 
     internal static class AddPersonEntitiesToPersonViewModelConverterExtension

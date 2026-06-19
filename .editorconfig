@@ -14,6 +14,10 @@ dotnet_analyzer_diagnostic.severity = none
 generated_code = true
 dotnet_analyzer_diagnostic.severity = none
 
+[**/Migrations/**]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+
 # File header template
 file_header_template = <copyright file="{fileName}" company="Ricardo">\nCopyright (c) Ricardo. All rights reserved.\n</copyright>
 

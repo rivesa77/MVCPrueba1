@@ -4,10 +4,9 @@
 
 #pragma warning disable SA1200 // Using directives should be placed correctly
 
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCPrueba1.Data;
-using MVCPrueba1.Logic.Converter.Extensions;
+using MVCPrueba1.Infrastructure.Extensions;
 using MVCPrueba1.Logic.Extensions;
 
 #pragma warning restore SA1200 // Using directives should be placed correctly
@@ -20,21 +19,11 @@ var connectionString = builder
     .GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services
-    .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-
-builder.Services
-    .AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-builder.Services
     .AddControllersWithViews();
 
 builder.Services
-    .AddConverters()
-    .AddLogic();
+    .AddLogic()
+    .AddInfrastructure(connectionString);
 
 var app = builder.Build();
 

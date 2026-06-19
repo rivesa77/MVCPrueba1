@@ -5,6 +5,7 @@
 namespace MVCPrueba1.Logic.UserInfo
 {
     using System.Security.Claims;
+    using Microsoft.AspNetCore.Http;
 
     public class PersonUserDetails : IPersonUserDetails
     {

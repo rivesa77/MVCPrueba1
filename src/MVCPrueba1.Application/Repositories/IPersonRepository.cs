@@ -13,7 +13,7 @@ namespace MVCPrueba1.Logic.Repositories
     ///     La interfaz vive donde se consume; la implementacion vive donde se ejecuta el detalle tecnico. Si se cambia la implementacion,
     ///     no se cambia la interfaz. La interfaz es un contrato que define lo que se espera de la implementacion.
     /// </remarks>
-    internal interface IPersonRepository
+    public interface IPersonRepository
     {
         Task<bool> ExistsByDniAsync(string dni);
 
