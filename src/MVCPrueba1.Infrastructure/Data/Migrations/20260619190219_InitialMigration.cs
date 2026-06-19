@@ -15,12 +15,12 @@ namespace MVCPrueba1.Data.Migrations
                 name: "Persons",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", maxLength: 9, nullable: false),
-                    DNI = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DNI = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,8 @@ namespace MVCPrueba1.Data.Migrations
                         name: "FK_Persons_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

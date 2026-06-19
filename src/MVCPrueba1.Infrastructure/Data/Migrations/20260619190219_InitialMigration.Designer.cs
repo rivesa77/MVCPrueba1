@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCPrueba1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618111035_InitialMigration")]
+    [Migration("20260619190219_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -29,11 +29,12 @@ namespace MVCPrueba1.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(9)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DNI")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -45,6 +46,7 @@ namespace MVCPrueba1.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -258,11 +260,11 @@ namespace MVCPrueba1.Data.Migrations
 
             modelBuilder.Entity("MVCPrueba1.Entities.PersonEntity", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
