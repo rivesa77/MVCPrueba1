@@ -16,9 +16,11 @@ namespace MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Extensions
                     PersonEntitiesToPersonViewModelConverter>();
 
             services
-                .AddScoped<
-                    IPersonEntitiesToPersonViewModelPropertyConverter,
-                    NameConverter>();
+                .AddScoped<IPersonEntitiesToPersonViewModelPropertyConverter, DniConverter>()
+                .AddScoped<IPersonEntitiesToPersonViewModelPropertyConverter, EmailConverter>()
+                .AddScoped<IPersonEntitiesToPersonViewModelPropertyConverter, IdConverter>()
+                .AddScoped<IPersonEntitiesToPersonViewModelPropertyConverter, NameConverter>()
+                .AddScoped<IPersonEntitiesToPersonViewModelPropertyConverter, PhoneConverter>();
 
             return services;
         }
