@@ -22,6 +22,7 @@
 	</PropertyGroup>	
 	
   <ItemGroup>
+    <PackageReference Include="Converters" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.9" />

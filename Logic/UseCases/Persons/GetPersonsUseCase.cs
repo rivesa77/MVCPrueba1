@@ -6,19 +6,22 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 {
     using Microsoft.EntityFrameworkCore;
     using MVCPrueba1.Data;
+    using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel;
     using MVCPrueba1.Logic.UserInfo;
     using MVCPrueba1.Models;
     using ROP;
 
-    public class GetPersonsUseCase : IGetPersonsUseCase
+    internal class GetPersonsUseCase : PersonUseCaseBase, IGetPersonsUseCase
     {
-        private readonly ApplicationDbContext applicationDbContext;
-        private readonly IPersonUserDetails personUserDetails;
+        private readonly IPersonEntitiesToPersonViewModelConverter converter;
 
-        public GetPersonsUseCase(ApplicationDbContext applicationDbContext, IPersonUserDetails personUserDetails)
+        public GetPersonsUseCase(
+            ApplicationDbContext applicationDbContext,
+            IPersonUserDetails personUserDetails,
+            IPersonEntitiesToPersonViewModelConverter converter)
+            : base(applicationDbContext, personUserDetails)
         {
-            this.applicationDbContext = applicationDbContext;
-            this.personUserDetails = personUserDetails;
+            this.converter = converter;
         }
 
         public async Task<Result<IEnumerable<PersonViewModel>>> Execute()
@@ -28,18 +31,11 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
         private async Task<Result<IEnumerable<PersonViewModel>>> GetPersonsFromDatabase()
         {
-            string userId = this.personUserDetails.UserId;
+            string userId = this.PersonUserDetails.UserId;
 
-            IEnumerable<PersonViewModel> persons = await this.applicationDbContext.Persons
+            IEnumerable<PersonViewModel> persons = await this.ApplicationDbContext.Persons
                 .Where(p => p.UserId == userId)
-                .Select(p => new PersonViewModel
-                {
-                    DNI = p.DNI,
-                    Name = p.Name,
-                    Email = p.Email,
-                    Phone = p.Phone,
-                    Id = p.Id,
-                })
+                .Select(p => this.converter.Convert(p))
                 .AsNoTracking()
                 .ToListAsync();
 

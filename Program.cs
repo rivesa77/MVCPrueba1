@@ -7,6 +7,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCPrueba1.Data;
+using MVCPrueba1.Logic.Converter.Extensions;
 using MVCPrueba1.Logic.Extensions;
 
 #pragma warning restore SA1200 // Using directives should be placed correctly
@@ -32,6 +33,7 @@ builder.Services
     .AddControllersWithViews();
 
 builder.Services
+    .AddConverters()
     .AddLogic();
 
 var app = builder.Build();
