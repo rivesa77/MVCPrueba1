@@ -16,12 +16,12 @@ namespace MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Properties
     {
         protected override string GetPropertyValue(PersonViewModel source)
         {
-            return source.Email;
+            return source.Name;
         }
 
         protected override void SetPropertyValue(in PersonEntity result, string propertyValue)
         {
-            result.Email = propertyValue;
+            result.Name = propertyValue;
         }
     }
 }
