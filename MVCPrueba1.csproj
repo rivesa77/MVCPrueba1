@@ -10,14 +10,15 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="src\**" />
+    <Content Remove="src\**" />
+    <EmbeddedResource Remove="src\**" />
+    <None Remove="src\**" />
+  </ItemGroup>
 
     <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="src\**\*.cs" />
-      <None Remove="src\**\*" />
     </ItemGroup>
 
 	<PropertyGroup>
