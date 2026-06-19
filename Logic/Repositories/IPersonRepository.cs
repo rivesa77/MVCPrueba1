@@ -1,12 +1,18 @@
 // <copyright file="IPersonRepository.cs" company="Ricardo">
-// Copyright (c) Ricardo. All rights reserved.
+//     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
 namespace MVCPrueba1.Logic.Repositories
 {
     using MVCPrueba1.Entities;
 
-    // <remark>la interfaz vive donde se consume; la implementación vive donde se ejecuta el detalle técnico.Si se cambia la implementación, no se cambia la interfaz. La interfaz es un contrato que define lo que se espera de la implementación.</remark>
+    /// <summary>
+    ///     Define las operaciones de persistencia necesarias para trabajar con personas.
+    /// </summary>
+    /// <remarks>
+    ///     La interfaz vive donde se consume; la implementacion vive donde se ejecuta el detalle tecnico. Si se cambia la implementacion,
+    ///     no se cambia la interfaz. La interfaz es un contrato que define lo que se espera de la implementacion.
+    /// </remarks>
     internal interface IPersonRepository
     {
         Task<bool> ExistsByDniAsync(string dni);

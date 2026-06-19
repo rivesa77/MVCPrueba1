@@ -1,5 +1,5 @@
 // <copyright file="Program.cs" company="Ricardo">
-// Copyright (c) Ricardo. All rights reserved.
+//     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
 #pragma warning disable SA1200 // Using directives should be placed correctly

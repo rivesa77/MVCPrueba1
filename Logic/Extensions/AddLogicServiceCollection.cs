@@ -1,5 +1,5 @@
 ﻿// <copyright file="AddLogicServiceCollection.cs" company="Ricardo">
-// Copyright (c) Ricardo. All rights reserved.
+//     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
 namespace MVCPrueba1.Logic.Extensions

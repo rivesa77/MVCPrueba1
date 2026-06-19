@@ -1,5 +1,5 @@
 // <copyright file="ErrorViewModel.cs" company="Ricardo">
-// Copyright (c) Ricardo. All rights reserved.
+//     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
 namespace MVCPrueba1.Models
