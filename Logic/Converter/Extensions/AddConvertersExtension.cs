@@ -5,12 +5,15 @@
 namespace MVCPrueba1.Logic.Converter.Extensions
 {
     using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Extensions;
+    using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Extensions;
 
     internal static class AddConvertersExtension
     {
         internal static IServiceCollection AddConverters(this IServiceCollection services)
         {
-            services.AddPersonEntitiesToPersonViewModelConverter();
+            services
+                .AddPersonEntitiesToPersonViewModelConverter()
+                .AddPersonViewModelToPersonEntitiesConverter();
 
             return services;
         }

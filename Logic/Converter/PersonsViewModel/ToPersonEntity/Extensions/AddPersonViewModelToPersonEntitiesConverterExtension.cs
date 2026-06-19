@@ -1,0 +1,28 @@
+﻿// <copyright file="AddPersonViewModelToPersonEntitiesConverterExtension.cs" company="Ricardo">
+// Copyright (c) Ricardo. All rights reserved.
+// </copyright>
+
+namespace MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Extensions
+{
+    using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Properties;
+
+    internal static class AddPersonViewModelToPersonEntitiesConverterExtension
+    {
+        internal static IServiceCollection AddPersonViewModelToPersonEntitiesConverter(this IServiceCollection services)
+        {
+            services
+                .AddScoped<
+                    IPersonsViewModelToPersonEntityConverter,
+                    PersonsViewModelToPersonEntityConverter>();
+
+            services
+                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, DniConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, EmailConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, NameConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, PhoneConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, UserIdConverter>();
+
+            return services;
+        }
+    }
+}
