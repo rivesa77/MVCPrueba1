@@ -4,6 +4,8 @@
 
 namespace MVCPrueba1.Logic.UseCases.Extensions
 {
+    using MVCPrueba1.Data.Repositories;
+    using MVCPrueba1.Logic.Repositories;
     using MVCPrueba1.Logic.UseCases.Persons;
     using MVCPrueba1.Logic.UserInfo;
 
@@ -14,6 +16,8 @@ namespace MVCPrueba1.Logic.UseCases.Extensions
             services
                 .AddScoped<IAddPersonUseCase, AddPersonUseCase>()
                 .AddScoped<IGetPersonsUseCase, GetPersonsUseCase>()
+                .AddScoped<IGetPersonUseCase, GetPersonUseCase>()
+                .AddScoped<IPersonRepository, PersonRepository>()
                 .AddScoped<IPersonUserDetails, PersonUserDetails>();
 
             return services;

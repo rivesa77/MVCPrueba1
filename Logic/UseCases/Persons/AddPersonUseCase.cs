@@ -4,25 +4,22 @@
 
 namespace MVCPrueba1.Logic.UseCases.Persons
 {
-    using Microsoft.EntityFrameworkCore;
-    using MVCPrueba1.Data;
     using MVCPrueba1.Entities;
     using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity;
-    using MVCPrueba1.Logic.UserInfo;
+    using MVCPrueba1.Logic.Repositories;
     using MVCPrueba1.Models;
     using ROP;
 
     internal class AddPersonUseCase : IAddPersonUseCase
     {
-        private readonly ApplicationDbContext applicationDbContext;
-        private readonly IPersonUserDetails personUserDetails;
+        private readonly IPersonRepository personRepository;
         private readonly IPersonsViewModelToPersonEntityConverter converter;
 
         public AddPersonUseCase(
-            ApplicationDbContext applicationDbContext,
+            IPersonRepository personRepository,
             IPersonsViewModelToPersonEntityConverter converter)
         {
-            this.applicationDbContext = applicationDbContext;
+            this.personRepository = personRepository;
             this.converter = converter;
         }
 
@@ -38,8 +35,8 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
         private async Task<Result<bool>> ValidatePerson(PersonViewModel personViewModel)
         {
-            bool flagExist = await this.applicationDbContext.Persons
-                .AnyAsync(p => p.DNI.ToLower() == personViewModel.DNI.ToLower())
+            bool flagExist = await this.personRepository
+                .ExistsByDniAsync(personViewModel.DNI)
                 .ConfigureAwait(false);
 
             if (flagExist)
@@ -54,8 +51,7 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         {
             PersonEntity personEntity = this.converter.Convert(personViewModel);
 
-            await this.applicationDbContext.AddAsync(personEntity);
-            await this.applicationDbContext.SaveChangesAsync();
+            await this.personRepository.AddAsync(personEntity).ConfigureAwait(false);
 
             return true;
         }

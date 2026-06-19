@@ -4,10 +4,9 @@
 
 namespace MVCPrueba1.Logic.UseCases.Persons
 {
-    using Microsoft.EntityFrameworkCore;
-    using MVCPrueba1.Data;
     using MVCPrueba1.Entities;
     using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel;
+    using MVCPrueba1.Logic.Repositories;
     using MVCPrueba1.Logic.UserInfo;
     using MVCPrueba1.Models;
     using ROP;
@@ -17,10 +16,10 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         private readonly IPersonEntitiesToPersonViewModelConverter converter;
 
         public GetPersonUseCase(
-            ApplicationDbContext applicationDbContext,
+            IPersonRepository personRepository,
             IPersonUserDetails personUserDetails,
             IPersonEntitiesToPersonViewModelConverter converter)
-            : base(applicationDbContext, personUserDetails)
+            : base(personRepository, personUserDetails)
         {
             this.converter = converter;
         }
@@ -37,9 +36,8 @@ namespace MVCPrueba1.Logic.UseCases.Persons
 
         private async Task<Result<PersonViewModel>> GetPerson(Guid id)
         {
-            PersonEntity person = await this.ApplicationDbContext
-                .Persons
-                .SingleOrDefaultAsync(p => p.Id == id && p.UserId == this.PersonUserDetails.UserId)
+            PersonEntity person = await this.PersonRepository
+                .GetByIdAndUserIdAsync(id, this.PersonUserDetails.UserId)
                 .ConfigureAwait(false);
 
             if (person is null)

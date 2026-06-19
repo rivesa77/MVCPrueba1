@@ -4,9 +4,9 @@
 
 namespace MVCPrueba1.Logic.UseCases.Persons
 {
-    using Microsoft.EntityFrameworkCore;
-    using MVCPrueba1.Data;
+    using MVCPrueba1.Entities;
     using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel;
+    using MVCPrueba1.Logic.Repositories;
     using MVCPrueba1.Logic.UserInfo;
     using MVCPrueba1.Models;
     using ROP;
@@ -16,10 +16,10 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         private readonly IPersonEntitiesToPersonViewModelConverter converter;
 
         public GetPersonsUseCase(
-            ApplicationDbContext applicationDbContext,
+            IPersonRepository personRepository,
             IPersonUserDetails personUserDetails,
             IPersonEntitiesToPersonViewModelConverter converter)
-            : base(applicationDbContext, personUserDetails)
+            : base(personRepository, personUserDetails)
         {
             this.converter = converter;
         }
@@ -33,11 +33,11 @@ namespace MVCPrueba1.Logic.UseCases.Persons
         {
             string userId = this.PersonUserDetails.UserId;
 
-            IEnumerable<PersonViewModel> persons = await this.ApplicationDbContext.Persons
-                .Where(p => p.UserId == userId)
-                .Select(p => this.converter.Convert(p))
-                .AsNoTracking()
-                .ToListAsync();
+            IEnumerable<PersonEntity> personEntities = await this.PersonRepository
+                .GetByUserIdAsync(userId)
+                .ConfigureAwait(false);
+
+            IEnumerable<PersonViewModel> persons = personEntities.Select(p => this.converter.Convert(p));
 
             return Result.Success(persons);
         }

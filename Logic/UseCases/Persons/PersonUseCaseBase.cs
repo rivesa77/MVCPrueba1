@@ -4,18 +4,18 @@
 
 namespace MVCPrueba1.Logic.UseCases.Persons
 {
-    using MVCPrueba1.Data;
+    using MVCPrueba1.Logic.Repositories;
     using MVCPrueba1.Logic.UserInfo;
 
-    public class PersonUseCaseBase
+    internal class PersonUseCaseBase
     {
-        protected ApplicationDbContext ApplicationDbContext { get; }
+        protected IPersonRepository PersonRepository { get; }
 
         protected IPersonUserDetails PersonUserDetails { get; }
 
-        public PersonUseCaseBase(ApplicationDbContext applicationDbContext, IPersonUserDetails personUserDetails)
+        public PersonUseCaseBase(IPersonRepository personRepository, IPersonUserDetails personUserDetails)
         {
-            this.ApplicationDbContext = applicationDbContext;
+            this.PersonRepository = personRepository;
             this.PersonUserDetails = personUserDetails;
         }
     }
