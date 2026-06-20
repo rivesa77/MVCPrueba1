@@ -23,7 +23,7 @@
 					   type="button" class="btn btn-outline-danger">
 						<i class="bi bi-archive"></i>
 					</a>
-					<a asp-action="@person.Id" asp-controller="persons" type="button" class="btn btn-outline-primary">
+					<a asp-action="GetPerson" asp-controller="persons" asp-route-id="@person.Id" type="button" class="btn btn-outline-primary">
 						<i class="bi bi-pencil"></i>
 					</a>
 				</td>
