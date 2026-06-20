@@ -4,6 +4,7 @@
 
 namespace MVCPrueba1.Application.UseCases.Persons
 {
+    using MVCPrueba1.Application.Models.Extensions;
     using MVCPrueba1.Entities;
     using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity;
     using MVCPrueba1.Logic.Repositories;
@@ -45,16 +46,18 @@ namespace MVCPrueba1.Application.UseCases.Persons
                 return Result.Failure<bool>("Person not found");
             }
 
-            if (!HasChanges(sourceClass, currentPerson))
+            if (!sourceClass.HasChanges(currentPerson))
             {
                 return Result.Failure<bool>("No changes to update");
             }
 
             bool hasDniChanged = !string.Equals(sourceClass.DNI, currentPerson.DNI, StringComparison.Ordinal);
 
-            if (hasDniChanged && await this.personRepository
+            bool existsDniDb = await this.personRepository
                 .ExistsByDniAndIdAsync(sourceClass.DNI, sourceClass.Id)
-                .ConfigureAwait(false))
+                .ConfigureAwait(false);
+
+            if (hasDniChanged && existsDniDb)
             {
                 return Result.Failure<bool>("Person DNI Already Exist");
             }
@@ -64,14 +67,6 @@ namespace MVCPrueba1.Application.UseCases.Persons
             bool result = await this.personRepository.UpdatePersonAsync(personEntity).ConfigureAwait(false);
 
             return Result.Success(result);
-        }
-
-        private static bool HasChanges(PersonViewModel sourceClass, PersonEntity currentPerson)
-        {
-            return !string.Equals(sourceClass.DNI, currentPerson.DNI, StringComparison.Ordinal)
-                || !string.Equals(sourceClass.Name, currentPerson.Name, StringComparison.Ordinal)
-                || !string.Equals(sourceClass.Phone, currentPerson.Phone, StringComparison.Ordinal)
-                || !string.Equals(sourceClass.Email, currentPerson.Email, StringComparison.Ordinal);
         }
 
         private static Result<bool> Validate(PersonViewModel sourceClass)
