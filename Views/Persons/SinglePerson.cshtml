@@ -1,0 +1,58 @@
+﻿@model PersonViewModel
+
+
+@if (!string.IsNullOrWhiteSpace(@Model.ErrorMessage))
+{
+	<div class="alert alert-primary" role="alert">
+		@Model.ErrorMessage
+	</div>
+}
+
+@if (ViewBag.UpdateResult == true)
+{
+	<div class="alert alert-success" role="alert">
+        "Update Person Success"
+	</div>
+}
+
+<form asp-action="@Model.Id" asp-controller="Persons"
+	  method="post" class="row row-cols-lg-auto g-3 align-items-center">
+
+	<div class="col-12">
+		<label class="visually-hidden" for="PersonDNI">
+			Person DNI
+		</label>
+		<div class="input-group">
+			<div class="input-group-text">Person DNI</div>
+			<input type="text" asp-for="DNI" class=" form-control" id="inlineFormInputGroupPerson" placeholder="Person DNI">
+			<input type="hidden" asp-for="Id" />
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="input-group">
+			<div class="input-group-text">Person Name</div>
+			<input type="text" asp-for="Name" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Name">
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="input-group">
+			<div class="input-group-text">Person Phone</div>
+			<input type="text" asp-for="Phone" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Phone">
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="input-group">
+			<div class="input-group-text">Person Email</div>
+			<input type="text" asp-for="Email" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Email">
+		</div>
+	</div>
+	<div class="col-12">
+		<button type="submit" class="btn btn-primary" class="btn btn-outline-primary">Update Person</button>
+	</div>
+
+</form>
+
+
+<a asp-action="delete" asp-controller="Persons" asp-route-PersonName="@Model.Id" type="button" class="btn btn-outline-danger">
+	<i class="bi bi-archive"></i> Delete Person
+</a>
