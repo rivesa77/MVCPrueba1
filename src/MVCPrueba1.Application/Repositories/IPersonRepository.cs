@@ -22,5 +22,9 @@ namespace MVCPrueba1.Logic.Repositories
         Task<IEnumerable<PersonEntity>> GetByUserIdAsync(string userId);
 
         Task<PersonEntity> GetByIdAndUserIdAsync(Guid id, string userId);
+
+        Task<bool> ExistsByDniAndIdAsync(string dni, Guid id);
+
+        Task<bool> UpdatePersonAsync(PersonEntity personEntity);
     }
 }

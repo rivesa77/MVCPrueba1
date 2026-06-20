@@ -24,6 +24,13 @@ namespace MVCPrueba1.Data.Repositories
                 .ConfigureAwait(false);
         }
 
+        public async Task<bool> ExistsByDniAndIdAsync(string dni, Guid id)
+        {
+            return await this.applicationDbContext.Persons
+                .AnyAsync(p => p.DNI.ToLower() == dni.ToLower() && p.Id != id)
+                .ConfigureAwait(false);
+        }
+
         public async Task AddAsync(PersonEntity personEntity)
         {
             await this.applicationDbContext.AddAsync(personEntity).ConfigureAwait(false);
@@ -45,6 +52,15 @@ namespace MVCPrueba1.Data.Repositories
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.Id == id && p.UserId == userId)
                 .ConfigureAwait(false);
+        }
+
+        public async Task<bool> UpdatePersonAsync(PersonEntity personEntity)
+        {
+            this.applicationDbContext.Persons.Update(personEntity);
+
+            await this.applicationDbContext.SaveChangesAsync().ConfigureAwait(false);
+
+            return true;
         }
     }
 }
