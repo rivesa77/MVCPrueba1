@@ -48,11 +48,11 @@ namespace MVCPrueba1.Application.UseCases.Persons
                 return Result.Failure<bool>("No changes to update");
             }
 
-            bool flagExist = await this.personRepository
-                .ExistsByDniAndIdAsync(sourceClass.DNI, sourceClass.Id)
-                .ConfigureAwait(false);
+            bool hasDniChanged = !string.Equals(sourceClass.DNI, currentPerson.DNI, StringComparison.Ordinal);
 
-            if (flagExist)
+            if (hasDniChanged && await this.personRepository
+                .ExistsByDniAndIdAsync(sourceClass.DNI, sourceClass.Id)
+                .ConfigureAwait(false))
             {
                 return Result.Failure<bool>("Person DNI Already Exist");
             }
