@@ -8,11 +8,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Tests\**" />
-    <EmbeddedResource Remove="Tests\**" />
-    <None Remove="Tests\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
@@ -24,23 +19,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MVCPrueba1.Domain\MVCPrueba1.Domain.csproj" />
+    <ProjectReference Include="..\MVCPrueba1.Application\Application.csproj" />
+    <ProjectReference Include="..\MVCPrueba1.Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-	  <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-		  <_Parameter1>MVCPrueba1.Application.Tests</_Parameter1>
-	  </AssemblyAttribute>
-  	  <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
- 		  <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
- 	  </AssemblyAttribute>
-  </ItemGroup>	
-
-  <ItemGroup>
-    <PackageReference Include="Converters" Version="1.0.1" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.9" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.301" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
-    <PackageReference Include="Netmentor.ROP" Version="1.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
   </ItemGroup>
 </Project>

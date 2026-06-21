@@ -26,6 +26,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MVCPrueba1.Application.csproj" />
+		<ProjectReference Include="..\Application.csproj" />
 	</ItemGroup>
 </Project>
