@@ -1,0 +1,48 @@
+<script>
+	(() => {
+		const fields = ['DNI', 'Name', 'Phone', 'Email'];
+
+		document.querySelectorAll('[data-person-form="true"]').forEach((form) => {
+			const shouldDetectChanges = form.dataset.detectPersonChanges === 'true';
+			const noChangesMessageSelector = form.dataset.noChangesMessage;
+			const noChangesMessage = noChangesMessageSelector
+				? document.querySelector(noChangesMessageSelector)
+				: null;
+
+			const hideMessages = () => {
+				document.querySelectorAll('.person-message').forEach((message) => {
+					message.classList.add('d-none');
+				});
+			};
+
+			if (!shouldDetectChanges) {
+				return;
+			}
+
+			const initialValues = Object.fromEntries(
+				fields.map((field) => {
+					const input = form.querySelector(`[name="${field}"]`);
+					return [field, input?.value ?? ''];
+				})
+			);
+
+			form.addEventListener('submit', (event) => {
+				const hasChanges = fields.some((field) => {
+					const input = form.querySelector(`[name="${field}"]`);
+					return (input?.value ?? '') !== initialValues[field];
+				});
+
+				if (!hasChanges) {
+					event.preventDefault();
+					hideMessages();
+					noChangesMessage?.classList.remove('d-none');
+				}
+			});
+
+			fields.forEach((field) => {
+				const input = form.querySelector(`[name="${field}"]`);
+				input?.addEventListener('input', hideMessages);
+			});
+		});
+	})();
+</script>

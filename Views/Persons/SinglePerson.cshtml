@@ -20,37 +20,11 @@
 </div>
 
 <form id="updatePersonForm" asp-action="UpdatePerson" asp-controller="UpdatePerson" asp-route-personId="@Model.Id" method="post"
+	  data-person-form="true" data-detect-person-changes="true" data-no-changes-message="#noChangesMessage"
 	  class="row row-cols-lg-auto g-3 align-items-center">
 
-	<div class="col-12">
-		<label class="visually-hidden" for="PersonDNI">
-			Person DNI
-		</label>
-		<div class="input-group">
-			<div class="input-group-text">Person DNI</div>
-			<input type="text" asp-for="DNI" class=" form-control" id="inlineFormInputGroupPerson" placeholder="Person DNI"
-				   required minlength="9" maxlength="9">
-		</div>
-	</div>
-	<div class="col-12">
-		<div class="input-group">
-			<div class="input-group-text">Person Name</div>
-			<input type="text" asp-for="Name" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Name"
-				   required maxlength="100">
-		</div>
-	</div>
-	<div class="col-12">
-		<div class="input-group">
-			<div class="input-group-text">Person Phone</div>
-			<input type="text" asp-for="Phone" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Phone">
-		</div>
-	</div>
-	<div class="col-12">
-		<div class="input-group">
-			<div class="input-group-text">Person Email</div>
-			<input type="text" asp-for="Email" class=" form-control" id="inlineFormInputGroupUsername" placeholder="Person Email">
-		</div>
-	</div>
+	<partial name="Persons/PersonFormFields" model="Model" />
+
 	<div class="col-12">
 		<button type="submit" class="btn btn-outline-primary">Update Person</button>
 	</div>
@@ -69,42 +43,5 @@
 </a>
 
 @section Scripts {
-	<script>
-		(() => {
-			const form = document.getElementById('updatePersonForm');
-			const noChangesMessage = document.getElementById('noChangesMessage');
-			const fields = ['DNI', 'Name', 'Phone', 'Email'];
-
-			const hideMessages = () => {
-				document.querySelectorAll('.person-message').forEach((message) => {
-					message.classList.add('d-none');
-				});
-			};
-
-			const initialValues = Object.fromEntries(
-				fields.map((field) => {
-					const input = form.querySelector(`[name="${field}"]`);
-					return [field, input?.value ?? ''];
-				})
-			);
-
-			form.addEventListener('submit', (event) => {
-				const hasChanges = fields.some((field) => {
-					const input = form.querySelector(`[name="${field}"]`);
-					return (input?.value ?? '') !== initialValues[field];
-				});
-
-				if (!hasChanges) {
-					event.preventDefault();
-					hideMessages();
-					noChangesMessage.classList.remove('d-none');
-				}
-			});
-
-			fields.forEach((field) => {
-				const input = form.querySelector(`[name="${field}"]`);
-				input?.addEventListener('input', hideMessages);
-			});
-		})();
-	</script>
+	<partial name="Persons/PersonFormScripts" />
 }
