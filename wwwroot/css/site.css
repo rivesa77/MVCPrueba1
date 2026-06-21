@@ -239,6 +239,26 @@ a {
   border-radius: 8px;
 }
 
+.delete-confirmation {
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(23, 32, 51, 0.2);
+}
+
+.delete-confirmation .modal-header,
+.delete-confirmation .modal-footer {
+  border-color: var(--app-border);
+}
+
+.modal-kicker {
+  color: var(--app-danger);
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 767.98px) {
   .app-main {
     padding-top: 22px;

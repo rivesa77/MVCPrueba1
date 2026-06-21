@@ -35,7 +35,7 @@
 						<td>
 							<div class="table-actions">
 								<a asp-action="GetPerson" asp-controller="GetPerson" asp-route-id="@person.Id" class="btn btn-sm btn-outline-primary">Edit</a>
-								<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@person.Id" method="post">
+								<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@person.Id" method="post" data-delete-confirm="true">
 									<button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
 								</form>
 							</div>

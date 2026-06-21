@@ -44,7 +44,7 @@
 	</form>
 </section>
 
-<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@Model.Id" method="post" class="danger-action">
+<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@Model.Id" method="post" class="danger-action" data-delete-confirm="true">
 	<button type="submit" class="btn btn-outline-danger">
 		Delete Person
 	</button>

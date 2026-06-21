@@ -1,0 +1,65 @@
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content delete-confirmation">
+			<div class="modal-header">
+				<div>
+					<p class="modal-kicker">Confirmacion</p>
+					<h2 class="modal-title fs-5" id="deleteConfirmationTitle">Eliminar registro</h2>
+				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+			</div>
+			<div class="modal-body">
+				<p>El registro se va a eliminar. Esta operacion no se puede deshacer.</p>
+				<p class="mb-0">Desea continuar?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	(() => {
+		const modalElement = document.getElementById('deleteConfirmationModal');
+		const confirmButton = document.getElementById('confirmDeleteButton');
+
+		if (!modalElement || !confirmButton || !window.bootstrap) {
+			return;
+		}
+
+		const modal = new bootstrap.Modal(modalElement);
+		let pendingForm = null;
+
+		document.addEventListener('submit', (event) => {
+			const form = event.target;
+
+			if (!(form instanceof HTMLFormElement) || form.dataset.deleteConfirm !== 'true') {
+				return;
+			}
+
+			if (form.dataset.deleteConfirmed === 'true') {
+				return;
+			}
+
+			event.preventDefault();
+			pendingForm = form;
+			modal.show();
+		});
+
+		confirmButton.addEventListener('click', () => {
+			if (!pendingForm) {
+				return;
+			}
+
+			pendingForm.dataset.deleteConfirmed = 'true';
+			modal.hide();
+			pendingForm.requestSubmit();
+		});
+
+		modalElement.addEventListener('hidden.bs.modal', () => {
+			pendingForm = null;
+		});
+	})();
+</script>
