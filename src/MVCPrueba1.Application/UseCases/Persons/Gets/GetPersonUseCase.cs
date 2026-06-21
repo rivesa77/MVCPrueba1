@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons
+namespace MVCPrueba1.Application.UseCases.Persons.Gets
 {
     using MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel;
     using MVCPrueba1.Application.Models;

@@ -5,7 +5,10 @@
 namespace MVCPrueba1.Application.UseCases.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Application.UseCases.Persons;
+    using MVCPrueba1.Application.UseCases.Persons.Creates;
+    using MVCPrueba1.Application.UseCases.Persons.Deletes;
+    using MVCPrueba1.Application.UseCases.Persons.Gets;
+    using MVCPrueba1.Application.UseCases.Persons.Updates;
 
     public static class AddUseCaseServiceCollection
     {

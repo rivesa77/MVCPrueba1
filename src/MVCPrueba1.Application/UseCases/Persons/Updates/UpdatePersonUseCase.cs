@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons
+namespace MVCPrueba1.Application.UseCases.Persons.Updates
 {
     using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
     using MVCPrueba1.Application.Models;
