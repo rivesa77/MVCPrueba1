@@ -1,5 +1,16 @@
-﻿@model PersonViewModel
+@model PersonViewModel
 
+@{
+	ViewData["Title"] = "Edit Person";
+}
+
+<section class="page-header">
+	<div>
+		<p class="page-kicker">Persons</p>
+		<h1>Edit person</h1>
+	</div>
+	<a asp-action="Index" asp-controller="GetPersons" class="btn btn-outline-secondary">Person List</a>
+</section>
 
 @if (!string.IsNullOrWhiteSpace(@Model.ErrorMessage))
 {
@@ -11,7 +22,7 @@
 @if (ViewBag.UpdateResult == true)
 {
 	<div class="alert alert-success person-message" role="alert">
-        Update correctly
+		Update correctly
 	</div>
 }
 
@@ -19,28 +30,25 @@
 	No changes to update
 </div>
 
-<form id="updatePersonForm" asp-action="UpdatePerson" asp-controller="UpdatePerson" asp-route-personId="@Model.Id" method="post"
-	  data-person-form="true" data-detect-person-changes="true" data-no-changes-message="#noChangesMessage"
-	  class="row row-cols-lg-auto g-3 align-items-center">
+<section class="surface form-surface">
+	<form id="updatePersonForm" asp-action="UpdatePerson" asp-controller="UpdatePerson" asp-route-personId="@Model.Id" method="post"
+		  data-person-form="true" data-detect-person-changes="true" data-no-changes-message="#noChangesMessage"
+		  class="person-form">
+		<div class="person-form-grid">
+			<partial name="Persons/PersonFormFields" model="Model" />
+		</div>
 
-	<partial name="Persons/PersonFormFields" model="Model" />
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Update Person</button>
+		</div>
+	</form>
+</section>
 
-	<div class="col-12">
-		<button type="submit" class="btn btn-outline-primary">Update Person</button>
-	</div>
-
-</form>
-
-
-<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@Model.Id" method="post" class="d-inline">
+<form asp-action="DeletePerson" asp-controller="DeletePerson" asp-route-personId="@Model.Id" method="post" class="danger-action">
 	<button type="submit" class="btn btn-outline-danger">
-		<i class="bi bi-archive"></i> Delete Person
+		Delete Person
 	</button>
 </form>
-
-<a asp-action="Index" asp-controller="GetPersons" class="btn btn-primary">
-	<i class="bi bi-archive"></i> Person List	
-</a>
 
 @section Scripts {
 	<partial name="Persons/PersonFormScripts" />

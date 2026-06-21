@@ -1,41 +1,29 @@
 @model PersonViewModel
 
-<div class="col-12">
-	<label class="visually-hidden" asp-for="DNI">
+<div class="form-field">
+	<label class="form-label" asp-for="DNI">
 		Person DNI
 	</label>
-	<div class="input-group">
-		<div class="input-group-text">Person DNI</div>
-		<input type="text" asp-for="DNI" class="form-control" placeholder="Person DNI" required minlength="9" maxlength="9">
-	</div>
+	<input type="text" asp-for="DNI" class="form-control" placeholder="12345678A" required minlength="9" maxlength="9">
 </div>
 
-<div class="col-12">
-	<label class="visually-hidden" asp-for="Name">
+<div class="form-field">
+	<label class="form-label" asp-for="Name">
 		Person Name
 	</label>
-	<div class="input-group">
-		<div class="input-group-text">Person Name</div>
-		<input type="text" asp-for="Name" class="form-control" placeholder="Person Name" required maxlength="100">
-	</div>
+	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="100">
 </div>
 
-<div class="col-12">
-	<label class="visually-hidden" asp-for="Phone">
+<div class="form-field">
+	<label class="form-label" asp-for="Phone">
 		Person Phone
 	</label>
-	<div class="input-group">
-		<div class="input-group-text">Person Phone</div>
-		<input type="text" asp-for="Phone" class="form-control" placeholder="Person Phone">
-	</div>
+	<input type="text" asp-for="Phone" class="form-control" placeholder="+34 600 000 000">
 </div>
 
-<div class="col-12">
-	<label class="visually-hidden" asp-for="Email">
+<div class="form-field">
+	<label class="form-label" asp-for="Email">
 		Person Email
 	</label>
-	<div class="input-group">
-		<div class="input-group-text">Person Email</div>
-		<input type="text" asp-for="Email" class="form-control" placeholder="Person Email">
-	</div>
+	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com">
 </div>

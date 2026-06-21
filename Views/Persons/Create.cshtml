@@ -1,4 +1,15 @@
-﻿@model PersonViewModel
+@model PersonViewModel
+
+@{
+	ViewData["Title"] = "Create Person";
+}
+
+<section class="page-header">
+	<div>
+		<p class="page-kicker">Persons</p>
+		<h1>Create person</h1>
+	</div>
+</section>
 
 @if (!string.IsNullOrWhiteSpace(@Model.ErrorMessage))
 {
@@ -7,16 +18,18 @@
 	</div>
 }
 
-<form asp-action="create" asp-controller="CreatePerson" data-person-form="true"
-	  method="post" class="row row-cols-lg-auto g-3 align-items-center">
+<section class="surface form-surface">
+	<form asp-action="create" asp-controller="CreatePerson" data-person-form="true" method="post" class="person-form">
+		<div class="person-form-grid">
+			<partial name="Persons/PersonFormFields" model="Model" />
+		</div>
 
-	<partial name="Persons/PersonFormFields" model="Model" />
-
-	<div class="col-12">
-		<button type="submit" class="btn btn-primary">Create Person</button>
-	</div>
-
-</form>
+		<div class="form-actions">
+			<a asp-action="Index" asp-controller="GetPersons" class="btn btn-outline-secondary">Cancel</a>
+			<button type="submit" class="btn btn-primary">Create Person</button>
+		</div>
+	</form>
+</section>
 
 @section Scripts {
 	<partial name="Persons/PersonFormScripts" />

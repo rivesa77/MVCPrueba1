@@ -1,22 +1,28 @@
-﻿@model IndexViewModel
+@model IndexViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
-
-
-
 
 @if (User.Identity?.IsAuthenticated ?? false)
 {
-    <a asp-action="create" asp-controller="CreatePerson" class="btn btn-primary">Create Person</a>
+	<section class="page-header">
+		<div>
+			<p class="page-kicker">Dashboard</p>
+			<h1>Person management</h1>
+		</div>
+	</section>
 
-    <a href="Persons/" class="btn btn-secondary">Listado</a>
-    
+	<section class="surface form-surface">
+		<div class="home-actions">
+			<a asp-action="Create" asp-controller="CreatePerson" class="btn btn-primary">Create Person</a>
+			<a asp-action="Index" asp-controller="GetPersons" class="btn btn-outline-secondary">View Persons</a>
+		</div>
+	</section>
 }
 else
 {
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-    </div>
+	<section class="welcome-panel">
+		<h1>Welcome</h1>
+	</section>
 }
