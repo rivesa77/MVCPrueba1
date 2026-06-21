@@ -1,11 +1,11 @@
-﻿// <copyright file="AddPersonEntitiesToPersonViewModelConverterExtension.cs" company="Ricardo">
+// <copyright file="AddPersonEntitiesToPersonViewModelConverterExtension.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Extensions
+namespace MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Properties;
+    using MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel.Properties;
 
     internal static class AddPersonEntitiesToPersonViewModelConverterExtension
     {

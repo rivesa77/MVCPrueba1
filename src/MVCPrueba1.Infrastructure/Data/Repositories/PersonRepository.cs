@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Data.Repositories
+namespace MVCPrueba1.Infrastructure.Data.Repositories
 {
     using Microsoft.EntityFrameworkCore;
-    using MVCPrueba1.Entities;
-    using MVCPrueba1.Logic.Repositories;
+    using MVCPrueba1.Application.Repositories;
+    using MVCPrueba1.Domain.Entities;
 
     internal class PersonRepository : IPersonRepository
     {

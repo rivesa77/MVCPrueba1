@@ -1,12 +1,12 @@
-﻿// <copyright file="PersonViewModelExtension.cs" company="Ricardo">
+// <copyright file="PersonViewModelExtension.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
 namespace MVCPrueba1.Application.Models.Extensions
 {
     using System;
-    using MVCPrueba1.Entities;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Models;
+    using MVCPrueba1.Domain.Entities;
 
     internal static class PersonViewModelExtension
     {

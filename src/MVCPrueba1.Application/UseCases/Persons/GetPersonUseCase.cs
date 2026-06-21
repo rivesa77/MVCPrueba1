@@ -1,14 +1,14 @@
-﻿// <copyright file="GetPersonUseCase.cs" company="Ricardo">
+// <copyright file="GetPersonUseCase.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.UseCases.Persons
+namespace MVCPrueba1.Application.UseCases.Persons
 {
-    using MVCPrueba1.Entities;
-    using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel;
-    using MVCPrueba1.Logic.Repositories;
-    using MVCPrueba1.Logic.UserInfo;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel;
+    using MVCPrueba1.Application.Models;
+    using MVCPrueba1.Application.Repositories;
+    using MVCPrueba1.Application.UserInfo;
+    using MVCPrueba1.Domain.Entities;
     using ROP;
 
     internal class GetPersonUseCase : PersonUseCaseBase, IGetPersonUseCase

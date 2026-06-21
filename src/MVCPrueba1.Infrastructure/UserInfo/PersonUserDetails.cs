@@ -1,11 +1,12 @@
-﻿// <copyright file="PersonUserDetails.cs" company="Ricardo">
+// <copyright file="PersonUserDetails.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.UserInfo
+namespace MVCPrueba1.Infrastructure.UserInfo
 {
     using System.Security.Claims;
     using Microsoft.AspNetCore.Http;
+    using MVCPrueba1.Application.UserInfo;
 
     public class PersonUserDetails : IPersonUserDetails
     {

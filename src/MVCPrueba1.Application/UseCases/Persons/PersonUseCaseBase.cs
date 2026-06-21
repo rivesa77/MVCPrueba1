@@ -1,11 +1,11 @@
-﻿// <copyright file="PersonUseCaseBase.cs" company="Ricardo">
+// <copyright file="PersonUseCaseBase.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.UseCases.Persons
+namespace MVCPrueba1.Application.UseCases.Persons
 {
-    using MVCPrueba1.Logic.Repositories;
-    using MVCPrueba1.Logic.UserInfo;
+    using MVCPrueba1.Application.Repositories;
+    using MVCPrueba1.Application.UserInfo;
 
     internal class PersonUseCaseBase
     {

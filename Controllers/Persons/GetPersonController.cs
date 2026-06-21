@@ -1,4 +1,4 @@
-﻿// <copyright file="GetPersonController.cs" company="Ricardo">
+// <copyright file="GetPersonController.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
@@ -6,8 +6,8 @@ namespace MVCPrueba1.Controllers.Persons
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using MVCPrueba1.Logic.UseCases.Persons;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Models;
+    using MVCPrueba1.Application.UseCases.Persons;
     using ROP;
 
     [Authorize]

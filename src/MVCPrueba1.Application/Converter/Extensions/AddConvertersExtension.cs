@@ -1,12 +1,12 @@
-﻿// <copyright file="AddConvertersExtension.cs" company="Ricardo">
+// <copyright file="AddConvertersExtension.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Converter.Extensions
+namespace MVCPrueba1.Application.Converter.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Extensions;
-    using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Extensions;
+    using MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel.Extensions;
+    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Extensions;
 
     internal static class AddConvertersExtension
     {

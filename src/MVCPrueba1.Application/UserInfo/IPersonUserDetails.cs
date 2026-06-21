@@ -1,8 +1,8 @@
-﻿// <copyright file="IPersonUserDetails.cs" company="Ricardo">
+// <copyright file="IPersonUserDetails.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.UserInfo
+namespace MVCPrueba1.Application.UserInfo
 {
     public interface IPersonUserDetails
     {

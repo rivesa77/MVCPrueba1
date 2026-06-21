@@ -1,12 +1,12 @@
-﻿// <copyright file="PersonsViewModelToPersonEntityConverter.cs" company="Ricardo">
+// <copyright file="PersonsViewModelToPersonEntityConverter.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity
+namespace MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity
 {
-    using MVCPrueba1.Entities;
-    using MVCPrueba1.Logic.Converter.PersonsViewModel.ToPersonEntity.Properties;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Properties;
+    using MVCPrueba1.Application.Models;
+    using MVCPrueba1.Domain.Entities;
 
     internal class PersonsViewModelToPersonEntityConverter :
         IPersonsViewModelToPersonEntityConverter

@@ -6,7 +6,7 @@ namespace MVCPrueba1.Controllers
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Models;
 
     public class HomeController : Controller
     {

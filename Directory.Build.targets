@@ -1,8 +1,8 @@
 <Project>
 
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<NamespaceValidationAutoFix>true</NamespaceValidationAutoFix>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<PropertyGroup>
 		<EnforceNamespaceMatchesFolder Condition="'$(EnforceNamespaceMatchesFolder)' == ''">true</EnforceNamespaceMatchesFolder>

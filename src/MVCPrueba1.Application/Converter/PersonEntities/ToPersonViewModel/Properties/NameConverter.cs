@@ -1,11 +1,11 @@
-﻿// <copyright file="NameConverter.cs" company="Ricardo">
+// <copyright file="NameConverter.cs" company="Ricardo">
 // Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Converter.PersonEntities.ToPersonViewModel.Properties
+namespace MVCPrueba1.Application.Converter.PersonEntities.ToPersonViewModel.Properties
 {
-    using MVCPrueba1.Entities;
-    using MVCPrueba1.Models;
+    using MVCPrueba1.Application.Models;
+    using MVCPrueba1.Domain.Entities;
     using Ricardo.CommonLibraries.Converters;
 
     internal class NameConverter : ClassPropertyConverterBase<

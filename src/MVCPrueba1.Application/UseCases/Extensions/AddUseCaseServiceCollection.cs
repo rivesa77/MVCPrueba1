@@ -1,12 +1,11 @@
-﻿// <copyright file="AddUseCaseServiceCollection.cs" company="Ricardo">
+// <copyright file="AddUseCaseServiceCollection.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.UseCases.Extensions
+namespace MVCPrueba1.Application.UseCases.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
     using MVCPrueba1.Application.UseCases.Persons;
-    using MVCPrueba1.Logic.UseCases.Persons;
 
     public static class AddUseCaseServiceCollection
     {

@@ -7,10 +7,11 @@ namespace MVCPrueba1.Infrastructure.Extensions
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Data;
-    using MVCPrueba1.Data.Repositories;
-    using MVCPrueba1.Logic.Repositories;
-    using MVCPrueba1.Logic.UserInfo;
+    using MVCPrueba1.Application.Repositories;
+    using MVCPrueba1.Application.UserInfo;
+    using MVCPrueba1.Infrastructure.Data;
+    using MVCPrueba1.Infrastructure.Data.Repositories;
+    using MVCPrueba1.Infrastructure.UserInfo;
 
     public static class AddInfrastructureServiceCollection
     {

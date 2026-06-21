@@ -5,9 +5,9 @@
 #pragma warning disable SA1200 // Using directives should be placed correctly
 
 using Microsoft.EntityFrameworkCore;
-using MVCPrueba1.Data;
+using MVCPrueba1.Application.Extensions;
+using MVCPrueba1.Infrastructure.Data;
 using MVCPrueba1.Infrastructure.Extensions;
-using MVCPrueba1.Logic.Extensions;
 
 #pragma warning restore SA1200 // Using directives should be placed correctly
 

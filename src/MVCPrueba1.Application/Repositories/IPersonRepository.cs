@@ -2,9 +2,9 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Repositories
+namespace MVCPrueba1.Application.Repositories
 {
-    using MVCPrueba1.Entities;
+    using MVCPrueba1.Domain.Entities;
 
     /// <summary>
     ///     Define las operaciones de persistencia necesarias para trabajar con personas.

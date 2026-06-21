@@ -1,12 +1,12 @@
-﻿// <copyright file="AddApplicationExtensions.cs" company="Ricardo">
+// <copyright file="AddApplicationExtensions.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Logic.Extensions
+namespace MVCPrueba1.Application.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Logic.Converter.Extensions;
-    using MVCPrueba1.Logic.UseCases.Extensions;
+    using MVCPrueba1.Application.Converter.Extensions;
+    using MVCPrueba1.Application.UseCases.Extensions;
 
     public static class AddApplicationExtensions
     {
