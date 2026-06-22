@@ -1,0 +1,8 @@
+<Project>
+	<Target Name="DeleteTestResultsAfterVSTest"
+			AfterTargets="VSTest"
+			Condition="'$(IsTestProject)' == 'true'">
+		<RemoveDir Directories="$(MSBuildThisFileDirectory)TestResults"
+				   Condition="Exists('$(MSBuildThisFileDirectory)TestResults')" />
+	</Target>
+</Project>
