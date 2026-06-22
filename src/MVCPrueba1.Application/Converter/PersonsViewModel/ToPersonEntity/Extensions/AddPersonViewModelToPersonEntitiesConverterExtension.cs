@@ -2,10 +2,10 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Extensions
+namespace Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Properties;
+    using Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity.Properties;
 
     internal static class AddPersonViewModelToPersonEntitiesConverterExtension
     {

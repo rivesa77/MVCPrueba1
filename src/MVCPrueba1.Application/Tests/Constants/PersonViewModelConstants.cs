@@ -1,8 +1,8 @@
-﻿// <copyright file="PersonViewModelConstants.cs" company="Ricardo">
+// <copyright file="PersonViewModelConstants.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Application.Tests.Constants
+namespace Ricardo.Application.Tests.Constants
 {
     internal static class PersonViewModelConstants
     {

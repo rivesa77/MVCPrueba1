@@ -1,11 +1,11 @@
-﻿// <copyright file="MemoryDbContext.cs" company="Ricardo">
+// <copyright file="MemoryDbContext.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Infrastructure.Tests.Data.Repositories
+namespace Ricardo.Infrastructure.Tests.Data.Repositories
 {
     using Microsoft.EntityFrameworkCore;
-    using MVCPrueba1.Infrastructure.Data;
+    using Ricardo.Infrastructure.Data;
 
     internal class MemoryDbContext
     {

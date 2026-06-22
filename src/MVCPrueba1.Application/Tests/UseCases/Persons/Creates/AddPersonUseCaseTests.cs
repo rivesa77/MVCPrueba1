@@ -1,18 +1,18 @@
-﻿// <copyright file="AddPersonUseCaseTests.cs" company="Ricardo">
+// <copyright file="AddPersonUseCaseTests.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Application.Tests.UseCases.Persons.Creates
+namespace Ricardo.Application.Tests.UseCases.Persons.Creates
 {
-    using Application.Tests.Constants;
     using FluentAssertions;
     using Moq;
-    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
-    using MVCPrueba1.Application.Models;
-    using MVCPrueba1.Application.Repositories;
-    using MVCPrueba1.Application.UseCases.Persons.Creates;
-    using MVCPrueba1.Domain.Entities;
+    using Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity;
+    using Ricardo.Application.Models;
+    using Ricardo.Application.Repositories;
+    using Ricardo.Application.Tests.Constants;
+    using Ricardo.Application.UseCases.Persons.Creates;
     using Ricardo.CommonLibraries.Extensions.Tests.Mocks;
+    using Ricardo.Domain.Entities;
     using ROP;
 
     [TestClass]

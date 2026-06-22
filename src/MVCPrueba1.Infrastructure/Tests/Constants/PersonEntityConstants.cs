@@ -1,8 +1,8 @@
-﻿// <copyright file="PersonEntityConstants.cs" company="Ricardo">
+// <copyright file="PersonEntityConstants.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Infrastructure.Tests.Constants
+namespace Ricardo.Infrastructure.Tests.Constants
 {
     internal static class PersonEntityConstants
     {

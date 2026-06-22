@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Controllers
+namespace Ricardo.MVCPrueba1.Controllers
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using MVCPrueba1.Application.Models;
+    using Ricardo.Application.Models;
 
     public class HomeController : Controller
     {

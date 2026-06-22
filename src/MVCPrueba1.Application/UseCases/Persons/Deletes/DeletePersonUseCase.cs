@@ -2,12 +2,12 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons.Deletes
+namespace Ricardo.Application.UseCases.Persons.Deletes
 {
-    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
-    using MVCPrueba1.Application.Models;
-    using MVCPrueba1.Application.Repositories;
-    using MVCPrueba1.Domain.Entities;
+    using Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity;
+    using Ricardo.Application.Models;
+    using Ricardo.Application.Repositories;
+    using Ricardo.Domain.Entities;
     using ROP;
 
     internal class DeletePersonUseCase : IDeletePersonUseCase

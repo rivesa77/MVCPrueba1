@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.Extensions
+namespace Ricardo.Application.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using MVCPrueba1.Application.Converter.Extensions;
-    using MVCPrueba1.Application.UseCases.Extensions;
+    using Ricardo.Application.Converter.Extensions;
+    using Ricardo.Application.UseCases.Extensions;
 
     public static class AddApplicationExtensions
     {

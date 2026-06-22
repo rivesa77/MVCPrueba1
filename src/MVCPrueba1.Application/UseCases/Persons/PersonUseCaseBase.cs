@@ -2,10 +2,10 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons
+namespace Ricardo.Application.UseCases.Persons
 {
-    using MVCPrueba1.Application.Repositories;
-    using MVCPrueba1.Application.UserInfo;
+    using Ricardo.Application.Repositories;
+    using Ricardo.Application.UserInfo;
 
     internal class PersonUseCaseBase
     {

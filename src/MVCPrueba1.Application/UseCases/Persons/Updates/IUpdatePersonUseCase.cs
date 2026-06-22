@@ -2,9 +2,9 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons.Updates
+namespace Ricardo.Application.UseCases.Persons.Updates
 {
-    using MVCPrueba1.Application.Models;
+    using Ricardo.Application.Models;
 
     public interface IUpdatePersonUseCase : IPersonUseCase<PersonViewModel, bool>
     {

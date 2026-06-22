@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Properties
+namespace Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity.Properties
 {
-    using MVCPrueba1.Application.Models;
-    using MVCPrueba1.Domain.Entities;
+    using Ricardo.Application.Models;
     using Ricardo.CommonLibraries.Converters;
+    using Ricardo.Domain.Entities;
 
     internal class PhoneConverter : ClassPropertyConverterBase<
         PersonViewModel,

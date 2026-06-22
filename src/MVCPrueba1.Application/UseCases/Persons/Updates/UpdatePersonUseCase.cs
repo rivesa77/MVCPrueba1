@@ -2,14 +2,14 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace MVCPrueba1.Application.UseCases.Persons.Updates
+namespace Ricardo.Application.UseCases.Persons.Updates
 {
-    using MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
-    using MVCPrueba1.Application.Models;
-    using MVCPrueba1.Application.Models.Extensions;
-    using MVCPrueba1.Application.Repositories;
-    using MVCPrueba1.Application.UserInfo;
-    using MVCPrueba1.Domain.Entities;
+    using Ricardo.Application.Converter.PersonsViewModel.ToPersonEntity;
+    using Ricardo.Application.Models;
+    using Ricardo.Application.Models.Extensions;
+    using Ricardo.Application.Repositories;
+    using Ricardo.Application.UserInfo;
+    using Ricardo.Domain.Entities;
     using ROP;
 
     internal class UpdatePersonUseCase : IUpdatePersonUseCase

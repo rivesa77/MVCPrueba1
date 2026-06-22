@@ -1,15 +1,15 @@
-﻿// <copyright file="PersonRepositoryTests.cs" company="Ricardo">
+// <copyright file="PersonRepositoryTests.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Infrastructure.Tests.Data.Repositories
+namespace Ricardo.Infrastructure.Tests.Data.Repositories
 {
     using FluentAssertions;
-    using Infrastructure.Tests.Constants;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using MVCPrueba1.Domain.Entities;
-    using MVCPrueba1.Infrastructure.Data;
-    using MVCPrueba1.Infrastructure.Data.Repositories;
+    using Ricardo.Domain.Entities;
+    using Ricardo.Infrastructure.Data;
+    using Ricardo.Infrastructure.Data.Repositories;
+    using Ricardo.Infrastructure.Tests.Constants;
 
     [TestClass]
     [TestCategory("Infrastructure.PersonRepository")]
