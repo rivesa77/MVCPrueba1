@@ -11,19 +11,19 @@
 	<label class="form-label" asp-for="Name">
 		Person Name
 	</label>
-	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="100">
+	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="50">
 </div>
 
 <div class="form-field">
 	<label class="form-label" asp-for="Phone">
 		Person Phone
 	</label>
-	<input type="text" asp-for="Phone" class="form-control" placeholder="+34 600 000 000">
+	<input type="text" asp-for="Phone" class="form-control" placeholder="600 000 000" required maxlength="9>
 </div>
 
 <div class="form-field">
 	<label class="form-label" asp-for="Email">
 		Person Email
 	</label>
-	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com">
+	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com" required maxlength="75">
 </div>
