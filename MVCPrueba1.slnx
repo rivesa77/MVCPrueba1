@@ -4,4 +4,5 @@
   <Project Path="src/MVCPrueba1.Application/Tests/Application.Tests.csproj" Id="85442eb0-d285-491b-9619-78689ea7f110" />
   <Project Path="src/MVCPrueba1.Domain/Domain.csproj" />
   <Project Path="src/MVCPrueba1.Infrastructure/Infrastructure.csproj" />
+  <Project Path="src/MVCPrueba1.Infrastructure/Tests/Infrastructure.Tests.csproj" Id="1af3ef52-0459-4170-ab0f-6f878811c082" />
 </Solution>

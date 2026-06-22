@@ -16,6 +16,7 @@ namespace Application.Tests.UseCases.Persons.Creates
     using ROP;
 
     [TestClass]
+    [TestCategory("Application.UsesCases.AddPersonUseCase")]
     public class AddPersonUseCaseTests
     {
         private const string DniRequiredMessage = "Person DNI is required";

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
-		<AssemblyName>MVCPrueba1.Application.Tests</AssemblyName>
+		<AssemblyName>MVCPrueba1.Infrastructure.Tests</AssemblyName>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<IsPackable>false</IsPackable>
@@ -20,6 +20,7 @@
 		<PackageReference Include="CommonLibraries.Extensions" Version="1.0.2" />
 		<PackageReference Include="coverlet.collector" Version="8.0.1" />
 		<PackageReference Include="FluentAssertions" Version="7.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.9" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.6.0" />
 		<PackageReference Include="Moq" Version="4.20.72" />
 		<PackageReference Include="MSTest.TestFramework" Version="4.2.3" />
@@ -27,7 +28,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Application.csproj" />
+		<ProjectReference Include="..\Infrastructure.csproj" />
+		<ProjectReference Include="..\..\MVCPrueba1.Application\Application.csproj" />
+		<ProjectReference Include="..\..\MVCPrueba1.Domain\Domain.csproj" />
 	</ItemGroup>
+
 
 </Project>
