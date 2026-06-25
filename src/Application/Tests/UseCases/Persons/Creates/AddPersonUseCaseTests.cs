@@ -51,73 +51,35 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
         }
 
         [TestMethod]
-        [DataRow("12345678")]
-        [DataRow("1234567890")]
-        public async Task Execute_WhenDniIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string dni)
+        [DataRow("12345678", DniInvalidMessage)]
+        [DataRow("1234567890", DniInvalidMessage)]
+        [DataRow(" ", DniRequiredMessage)]
+        [DataRow(null, DniRequiredMessage)]
+        public async Task Execute_WhenDniIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string dni, string messageError)
         {
             // Arrange.
-            this.mockPersonRepository
-                .Setup(m => m.ExistsByDniAsync(It.IsAny<string>()))
-                .ReturnsAsync(false)
-                .Verifiable(Times.Never());
+            AddPersonUseCase addPersonUseCase = this.ConfigureMockAndCreateAddPersonUseCase();
 
-            this.mockPersonRepository
-                .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
-                .Verifiable(Times.Never);
+            PersonViewModel personViewModel = default;
 
-            this.mockConverter
-                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
-                .Verifiable(Times.Never);
-
-            AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
-                personRepository: this.mockPersonRepository.Object,
-                converter: this.mockConverter.Object);
+            if (dni is not null)
+            {
+                personViewModel = new PersonViewModel()
+                {
+                    DNI = dni,
+                    Email = PersonViewModelConstants.Email,
+                    Name = PersonViewModelConstants.Name,
+                    Phone = PersonViewModelConstants.Phone,
+                };
+            }
 
             // Act.
-            PersonViewModel personViewModel = new PersonViewModel()
-            {
-                DNI = dni,
-                Email = PersonViewModelConstants.Email,
-                Name = PersonViewModelConstants.Name,
-                Phone = PersonViewModelConstants.Phone,
-            };
-
             Result<bool> result = await addPersonUseCase
                 .Execute(personViewModel)
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResult(result, DniInvalidMessage);
-        }
-
-        [TestMethod]
-        public async Task Execute_WhenDniIsEmpty_ReturnsMessageErrorAndDoesNotCallRepository()
-        {
-            // Arrange.
-            this.mockPersonRepository
-                .Setup(m => m.ExistsByDniAsync(It.IsAny<string>()))
-                .ReturnsAsync(false)
-                .Verifiable(Times.Never());
-
-            this.mockPersonRepository
-                .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
-                .Verifiable(Times.Never);
-
-            this.mockConverter
-                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
-                .Verifiable(Times.Never);
-
-            AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
-                personRepository: this.mockPersonRepository.Object,
-                converter: this.mockConverter.Object);
-
-            // Act.
-            Result<bool> result = await addPersonUseCase
-                .Execute(new PersonViewModel())
-                .ConfigureAwait(false);
-
-            // Assert.
-            ValidateExpectResult(result, DniRequiredMessage);
+            ValidateExpectResult(result, messageError);
         }
 
         [TestMethod]
@@ -146,18 +108,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
         public async Task Execute_WhenPhoneIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string phone)
         {
             // Arrange.
-            this.mockPersonRepository
-                .Setup(m => m.ExistsByDniAsync(It.IsAny<string>()))
-                .ReturnsAsync(false)
-                .Verifiable(Times.Never());
-
-            this.mockPersonRepository
-                .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
-                .Verifiable(Times.Never);
-
-            this.mockConverter
-                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
-                .Verifiable(Times.Never);
+            AddPersonUseCase addPersonUseCase = this.ConfigureMockAndCreateAddPersonUseCase();
 
             PersonViewModel personViewModel = new PersonViewModel()
             {
@@ -166,10 +117,6 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 Name = PersonViewModelConstants.Name,
                 Phone = phone,
             };
-
-            AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
-                personRepository: this.mockPersonRepository.Object,
-                converter: this.mockConverter.Object);
 
             // Act.
             Result<bool> result = await addPersonUseCase
@@ -262,6 +209,28 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
             result.Errors.First().Message
                 .Should()
                 .BeEquivalentTo(messageError);
+        }
+
+        private AddPersonUseCase ConfigureMockAndCreateAddPersonUseCase()
+        {
+            this.mockPersonRepository
+                .Setup(m => m.ExistsByDniAsync(It.IsAny<string>()))
+                .ReturnsAsync(false)
+                .Verifiable(Times.Never());
+
+            this.mockPersonRepository
+                .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
+                .Verifiable(Times.Never);
+
+            this.mockConverter
+                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
+                .Verifiable(Times.Never);
+
+            AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
+                personRepository: this.mockPersonRepository.Object,
+                converter: this.mockConverter.Object);
+
+            return addPersonUseCase;
         }
 
         private void InitializeNonValidMocks(string dni, bool returnResult)
