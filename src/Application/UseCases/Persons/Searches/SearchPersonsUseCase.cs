@@ -55,6 +55,14 @@ namespace Ricardo.MVCPrueba1.Application.UseCases.Persons.Searches
 
             normalizedCriteria.SearchTerm = normalizedCriteria.SearchTerm?.Trim();
 
+            normalizedCriteria.SortField = Enum.IsDefined(normalizedCriteria.SortField)
+                ? normalizedCriteria.SortField
+                : PersonSortField.Name;
+
+            normalizedCriteria.SortDirection = Enum.IsDefined(normalizedCriteria.SortDirection)
+                ? normalizedCriteria.SortDirection
+                : PersonSortDirection.Ascending;
+
             return normalizedCriteria;
         }
 
@@ -98,6 +106,8 @@ namespace Ricardo.MVCPrueba1.Application.UseCases.Persons.Searches
                 Persons = personViewModels,
                 SearchField = criteria.SearchField,
                 SearchTerm = criteria.SearchTerm,
+                SortField = criteria.SortField,
+                SortDirection = criteria.SortDirection,
                 PageNumber = criteria.PageNumber,
                 PageSize = criteria.PageSize,
                 TotalItems = totalItems,

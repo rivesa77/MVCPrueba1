@@ -95,15 +95,18 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
                 personSearchQuery.SearchField,
                 personSearchQuery.SearchTerm);
 
+            int totalItems = await query.CountAsync().ConfigureAwait(false);
+
+            query = ApplySort(
+                query,
+                personSearchQuery.SortField,
+                personSearchQuery.SortDirection);
+
             IEnumerable<PersonEntity> persons = await query
-                .OrderBy(p => p.Name)
-                .ThenBy(p => p.DNI)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync()
                 .ConfigureAwait(false);
-
-            int totalItems = await query.CountAsync().ConfigureAwait(false);
 
             return (persons, totalItems);
         }
@@ -172,6 +175,30 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
                     || (p.Name != null && p.Name.ToUpper().Contains(normalizedSearchTerm))
                     || (p.Email != null && p.Email.ToUpper().Contains(normalizedSearchTerm))
                     || (p.Phone != null && p.Phone.ToUpper().Contains(normalizedSearchTerm))),
+            };
+        }
+
+        private static IQueryable<PersonEntity> ApplySort(
+            IQueryable<PersonEntity> query,
+            PersonSortField sortField,
+            PersonSortDirection sortDirection)
+        {
+            bool isDescending = sortDirection == PersonSortDirection.Descending;
+
+            return sortField switch
+            {
+                PersonSortField.Dni => isDescending
+                    ? query.OrderByDescending(p => p.DNI).ThenByDescending(p => p.Name)
+                    : query.OrderBy(p => p.DNI).ThenBy(p => p.Name),
+                PersonSortField.Email => isDescending
+                    ? query.OrderByDescending(p => p.Email).ThenByDescending(p => p.Name)
+                    : query.OrderBy(p => p.Email).ThenBy(p => p.Name),
+                PersonSortField.Phone => isDescending
+                    ? query.OrderByDescending(p => p.Phone).ThenByDescending(p => p.Name)
+                    : query.OrderBy(p => p.Phone).ThenBy(p => p.Name),
+                _ => isDescending
+                    ? query.OrderByDescending(p => p.Name).ThenByDescending(p => p.DNI)
+                    : query.OrderBy(p => p.Name).ThenBy(p => p.DNI),
             };
         }
 

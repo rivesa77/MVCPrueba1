@@ -12,6 +12,10 @@ namespace Ricardo.MVCPrueba1.Application.Models
 
         public string SearchTerm { get; set; }
 
+        public PersonSortField SortField { get; set; } = PersonSortField.Name;
+
+        public PersonSortDirection SortDirection { get; set; } = PersonSortDirection.Ascending;
+
         public int PageNumber { get; set; } = 1;
 
         public int PageSize { get; set; } = 5;

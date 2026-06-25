@@ -265,6 +265,24 @@ a {
   text-transform: uppercase;
 }
 
+.table-sort-link {
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.table-sort-link:hover {
+  color: var(--app-text);
+}
+
+.table-sort-link span {
+  color: var(--app-primary);
+  font-size: 0.68rem;
+  min-width: 28px;
+}
+
 .person-table tbody th,
 .person-table tbody td {
   border-color: #edf0f5;

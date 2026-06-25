@@ -9,6 +9,25 @@
 	bool showLastPageGap = lastVisiblePage < Model.TotalPages - 1;
 }
 
+@functions {
+	private PersonSortDirection GetNextSortDirection(PersonSearchViewModel model, PersonSortField sortField)
+	{
+		return model.SortField == sortField && model.SortDirection == PersonSortDirection.Ascending
+			? PersonSortDirection.Descending
+			: PersonSortDirection.Ascending;
+	}
+
+	private string GetSortLabel(PersonSearchViewModel model, PersonSortField sortField)
+	{
+		if (model.SortField != sortField)
+		{
+			return string.Empty;
+		}
+
+		return model.SortDirection == PersonSortDirection.Ascending ? "↑" : "↓";
+	}
+}
+
 <section class="page-header">
 	<div>
 		<p class="page-kicker">Directory</p>
@@ -42,6 +61,8 @@
 			</select>
 		</div>
 		<input type="hidden" name="pageNumber" value="1">
+		<input type="hidden" name="sortField" value="@Model.SortField">
+		<input type="hidden" name="sortDirection" value="@Model.SortDirection">
 		<div class="person-search-actions">
 			<a asp-action="Index" asp-controller="GetPersons" class="btn btn-outline-secondary">Clear</a>
 			<button type="submit" class="btn btn-primary">Search</button>
@@ -54,10 +75,50 @@
 		<table class="table align-middle person-table">
 			<thead>
 				<tr>
-					<th scope="col">DNI</th>
-					<th scope="col">Name</th>
-					<th scope="col">Email</th>
-					<th scope="col">Phone</th>
+					<th scope="col">
+						<a class="table-sort-link"
+						   asp-action="Index"
+						   asp-controller="GetPersons"
+						   asp-route-searchField="@Model.SearchField"
+						   asp-route-searchTerm="@Model.SearchTerm"
+						   asp-route-pageSize="@Model.PageSize"
+						   asp-route-pageNumber="1"
+						   asp-route-sortField="@PersonSortField.Dni"
+						   asp-route-sortDirection="@GetNextSortDirection(Model, PersonSortField.Dni)">DNI <span>@GetSortLabel(Model, PersonSortField.Dni)</span></a>
+					</th>
+					<th scope="col">
+						<a class="table-sort-link"
+						   asp-action="Index"
+						   asp-controller="GetPersons"
+						   asp-route-searchField="@Model.SearchField"
+						   asp-route-searchTerm="@Model.SearchTerm"
+						   asp-route-pageSize="@Model.PageSize"
+						   asp-route-pageNumber="1"
+						   asp-route-sortField="@PersonSortField.Name"
+						   asp-route-sortDirection="@GetNextSortDirection(Model, PersonSortField.Name)">Name <span>@GetSortLabel(Model, PersonSortField.Name)</span></a>
+					</th>
+					<th scope="col">
+						<a class="table-sort-link"
+						   asp-action="Index"
+						   asp-controller="GetPersons"
+						   asp-route-searchField="@Model.SearchField"
+						   asp-route-searchTerm="@Model.SearchTerm"
+						   asp-route-pageSize="@Model.PageSize"
+						   asp-route-pageNumber="1"
+						   asp-route-sortField="@PersonSortField.Email"
+						   asp-route-sortDirection="@GetNextSortDirection(Model, PersonSortField.Email)">Email <span>@GetSortLabel(Model, PersonSortField.Email)</span></a>
+					</th>
+					<th scope="col">
+						<a class="table-sort-link"
+						   asp-action="Index"
+						   asp-controller="GetPersons"
+						   asp-route-searchField="@Model.SearchField"
+						   asp-route-searchTerm="@Model.SearchTerm"
+						   asp-route-pageSize="@Model.PageSize"
+						   asp-route-pageNumber="1"
+						   asp-route-sortField="@PersonSortField.Phone"
+						   asp-route-sortDirection="@GetNextSortDirection(Model, PersonSortField.Phone)">Phone <span>@GetSortLabel(Model, PersonSortField.Phone)</span></a>
+					</th>
 					<th scope="col" class="text-end">Actions</th>
 				</tr>
 			</thead>
@@ -101,6 +162,8 @@
 					   asp-route-searchField="@Model.SearchField"
 					   asp-route-searchTerm="@Model.SearchTerm"
 					   asp-route-pageSize="@Model.PageSize"
+					   asp-route-sortField="@Model.SortField"
+					   asp-route-sortDirection="@Model.SortDirection"
 					   asp-route-pageNumber="@(Model.PageNumber - 1)">Previous</a>
 				</li>
 				@if (Model.TotalPages > 0)
@@ -112,6 +175,8 @@
 						   asp-route-searchField="@Model.SearchField"
 						   asp-route-searchTerm="@Model.SearchTerm"
 						   asp-route-pageSize="@Model.PageSize"
+						   asp-route-sortField="@Model.SortField"
+						   asp-route-sortDirection="@Model.SortDirection"
 						   asp-route-pageNumber="1">1</a>
 					</li>
 
@@ -131,6 +196,8 @@
 							   asp-route-searchField="@Model.SearchField"
 							   asp-route-searchTerm="@Model.SearchTerm"
 							   asp-route-pageSize="@Model.PageSize"
+							   asp-route-sortField="@Model.SortField"
+							   asp-route-sortDirection="@Model.SortDirection"
 							   asp-route-pageNumber="@pageIndex">@pageIndex</a>
 						</li>
 					}
@@ -151,6 +218,8 @@
 							   asp-route-searchField="@Model.SearchField"
 							   asp-route-searchTerm="@Model.SearchTerm"
 							   asp-route-pageSize="@Model.PageSize"
+							   asp-route-sortField="@Model.SortField"
+							   asp-route-sortDirection="@Model.SortDirection"
 							   asp-route-pageNumber="@Model.TotalPages">@Model.TotalPages</a>
 						</li>
 					}
@@ -162,6 +231,8 @@
 					   asp-route-searchField="@Model.SearchField"
 					   asp-route-searchTerm="@Model.SearchTerm"
 					   asp-route-pageSize="@Model.PageSize"
+					   asp-route-sortField="@Model.SortField"
+					   asp-route-sortDirection="@Model.SortDirection"
 					   asp-route-pageNumber="@(Model.PageNumber + 1)">Next</a>
 				</li>
 			</ul>

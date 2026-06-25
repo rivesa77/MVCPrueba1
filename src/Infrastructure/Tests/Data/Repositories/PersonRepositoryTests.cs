@@ -89,6 +89,40 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
                 .Be("Alice");
         }
 
+        [TestMethod]
+        public async Task SearchByUserIdAsync_WhenSortByDniDescending_ReturnsExpectedOrder()
+        {
+            ApplicationDbContext inMemoryDb = MemoryDbContext.GetInMemoryDbContext();
+
+            inMemoryDb.Persons.AddRange(
+                CreatePerson("Alice", "11111111A", PersonEntityConstants.UserId),
+                CreatePerson("Alicia", "22222222B", PersonEntityConstants.UserId),
+                CreatePerson("Bob", "33333333C", PersonEntityConstants.UserId));
+            await inMemoryDb.SaveChangesAsync();
+
+            PersonRepository personRepository = new PersonRepository(inMemoryDb);
+
+            (IEnumerable<PersonEntity> persons, int totalItems) = await personRepository
+                .SearchByUserIdAsync(new PersonSearchQuery()
+                {
+                    UserId = PersonEntityConstants.UserId,
+                    SortField = PersonSortField.Dni,
+                    SortDirection = PersonSortDirection.Descending,
+                    PageNumber = 1,
+                    PageSize = 3,
+                })
+                .ConfigureAwait(false);
+
+            totalItems
+                .Should()
+                .Be(3);
+
+            persons
+                .Select(person => person.DNI)
+                .Should()
+                .ContainInOrder("33333333C", "22222222B", "11111111A");
+        }
+
         private static PersonEntity CreatePerson(string name, string dni, string userId)
         {
             return new PersonEntity()

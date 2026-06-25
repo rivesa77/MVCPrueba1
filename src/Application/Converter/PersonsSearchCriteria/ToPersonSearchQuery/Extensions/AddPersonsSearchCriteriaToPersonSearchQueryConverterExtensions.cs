@@ -21,6 +21,8 @@ namespace Ricardo.Application.Converter.PersonsSearchCriteria.ToPersonSearchQuer
                 .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, PageSizeConverter>()
                 .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, SearchFieldConverter>()
                 .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, SearchTermConverter>()
+                .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, SortDirectionConverter>()
+                .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, SortFieldConverter>()
                 .AddScoped<IPersonsSearchCriteriaToPersonSearchQueryPropertyConverter, UserIdConverter>();
 
             return services;
