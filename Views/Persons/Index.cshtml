@@ -2,6 +2,11 @@
 
 @{
 	ViewData["Title"] = "Persons";
+	int visiblePagesAroundCurrent = 2;
+	int firstVisiblePage = Math.Max(2, Model.PageNumber - visiblePagesAroundCurrent);
+	int lastVisiblePage = Math.Min(Model.TotalPages - 1, Model.PageNumber + visiblePagesAroundCurrent);
+	bool showFirstPageGap = firstVisiblePage > 2;
+	bool showLastPageGap = lastVisiblePage < Model.TotalPages - 1;
 }
 
 <section class="page-header">
@@ -98,17 +103,57 @@
 					   asp-route-pageSize="@Model.PageSize"
 					   asp-route-pageNumber="@(Model.PageNumber - 1)">Previous</a>
 				</li>
-				@for (int pageIndex = 1; pageIndex <= Model.TotalPages; pageIndex++)
+				@if (Model.TotalPages > 0)
 				{
-					<li class='page-item @(pageIndex == Model.PageNumber ? "active" : string.Empty)'>
+					<li class='page-item @(Model.PageNumber == 1 ? "active" : string.Empty)'>
 						<a class="page-link"
 						   asp-action="Index"
 						   asp-controller="GetPersons"
 						   asp-route-searchField="@Model.SearchField"
 						   asp-route-searchTerm="@Model.SearchTerm"
 						   asp-route-pageSize="@Model.PageSize"
-						   asp-route-pageNumber="@pageIndex">@pageIndex</a>
+						   asp-route-pageNumber="1">1</a>
 					</li>
+
+					@if (showFirstPageGap)
+					{
+						<li class="page-item disabled">
+							<span class="page-link pagination-gap">...</span>
+						</li>
+					}
+
+					@for (int pageIndex = firstVisiblePage; pageIndex <= lastVisiblePage; pageIndex++)
+					{
+						<li class='page-item @(pageIndex == Model.PageNumber ? "active" : string.Empty)'>
+							<a class="page-link"
+							   asp-action="Index"
+							   asp-controller="GetPersons"
+							   asp-route-searchField="@Model.SearchField"
+							   asp-route-searchTerm="@Model.SearchTerm"
+							   asp-route-pageSize="@Model.PageSize"
+							   asp-route-pageNumber="@pageIndex">@pageIndex</a>
+						</li>
+					}
+
+					@if (showLastPageGap)
+					{
+						<li class="page-item disabled">
+							<span class="page-link pagination-gap">...</span>
+						</li>
+					}
+
+					@if (Model.TotalPages > 1)
+					{
+						<li class='page-item @(Model.PageNumber == Model.TotalPages ? "active" : string.Empty)'>
+							<a class="page-link"
+							   asp-action="Index"
+							   asp-controller="GetPersons"
+							   asp-route-searchField="@Model.SearchField"
+							   asp-route-searchTerm="@Model.SearchTerm"
+							   asp-route-pageSize="@Model.PageSize"
+							   asp-route-pageNumber="@Model.TotalPages">@Model.TotalPages</a>
+						</li>
+					}
 				}
 				<li class='page-item @(Model.HasNextPage ? string.Empty : "disabled")'>
 					<a class="page-link"
