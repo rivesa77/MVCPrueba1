@@ -95,8 +95,6 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
                 personSearchQuery.SearchField,
                 personSearchQuery.SearchTerm);
 
-            int totalItems = await query.CountAsync().ConfigureAwait(false);
-
             IEnumerable<PersonEntity> persons = await query
                 .OrderBy(p => p.Name)
                 .ThenBy(p => p.DNI)
@@ -104,6 +102,8 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
                 .Take(pageSize)
                 .ToListAsync()
                 .ConfigureAwait(false);
+
+            int totalItems = await query.CountAsync().ConfigureAwait(false);
 
             return (persons, totalItems);
         }
