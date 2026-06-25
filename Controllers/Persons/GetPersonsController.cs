@@ -22,20 +22,8 @@ namespace Ricardo.MVCPrueba1.Controllers.Persons
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> Index(
-            PersonSearchField searchField = PersonSearchField.All,
-            string searchTerm = default,
-            int pageNumber = 1,
-            int pageSize = 5)
+        public async Task<IActionResult> Index([FromQuery] PersonSearchCriteria criteria)
         {
-            PersonSearchCriteria criteria = new PersonSearchCriteria()
-            {
-                SearchField = searchField,
-                SearchTerm = searchTerm,
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-            };
-
             Result<PersonSearchViewModel> result = await this.searchPersonsUseCase.Execute(criteria)
                 .ConfigureAwait(false);
 
