@@ -21,6 +21,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
     {
         private const string DniRequiredMessage = "Person DNI is required";
         private const string DniAlreadyExistMessage = "Person DNI Already Exist";
+        private const string DniInvalidMessage = "Person DNI must contain exactly 9 characters";
         private const string PhoneInvalidMessage = "Person phone must contain exactly 9 numbers";
         private const string ConverterErrorMessage = "Conversion from PersonViewModel to PersonEntity failed, PersonEntity is null";
 
@@ -50,6 +51,46 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
         }
 
         [TestMethod]
+        [DataRow("12345678")]
+        [DataRow("1234567890")]
+        public async Task Execute_WhenDniIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string dni)
+        {
+            // Arrange.
+            this.mockPersonRepository
+                .Setup(m => m.ExistsByDniAsync(It.IsAny<string>()))
+                .ReturnsAsync(false)
+                .Verifiable(Times.Never());
+
+            this.mockPersonRepository
+                .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
+                .Verifiable(Times.Never);
+
+            this.mockConverter
+                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
+                .Verifiable(Times.Never);
+
+            AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
+                personRepository: this.mockPersonRepository.Object,
+                converter: this.mockConverter.Object);
+
+            // Act.
+            PersonViewModel personViewModel = new PersonViewModel()
+            {
+                DNI = dni,
+                Email = PersonViewModelConstants.Email,
+                Name = PersonViewModelConstants.Name,
+                Phone = PersonViewModelConstants.Phone,
+            };
+
+            Result<bool> result = await addPersonUseCase
+                .Execute(personViewModel)
+                .ConfigureAwait(false);
+
+            // Assert.
+            ValidateExpectResult(result, DniInvalidMessage);
+        }
+
+        [TestMethod]
         public async Task Execute_WhenDniIsEmpty_ReturnsMessageErrorAndDoesNotCallRepository()
         {
             // Arrange.
@@ -62,6 +103,10 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .Setup(m => m.AddAsync(It.IsAny<PersonEntity>()))
                 .Verifiable(Times.Never);
 
+            this.mockConverter
+                .Setup(m => m.Convert(It.IsAny<PersonViewModel>()))
+                .Verifiable(Times.Never);
+
             AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
                 personRepository: this.mockPersonRepository.Object,
                 converter: this.mockConverter.Object);
@@ -72,7 +117,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResutl(result, DniRequiredMessage);
+            ValidateExpectResult(result, DniRequiredMessage);
         }
 
         [TestMethod]
@@ -91,7 +136,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResutl(result, DniAlreadyExistMessage);
+            ValidateExpectResult(result, DniAlreadyExistMessage);
         }
 
         [TestMethod]
@@ -132,7 +177,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResutl(result, PhoneInvalidMessage);
+            ValidateExpectResult(result, PhoneInvalidMessage);
         }
 
         [TestMethod]
@@ -155,7 +200,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResutl(result, ConverterErrorMessage);
+            ValidateExpectResult(result, ConverterErrorMessage);
         }
 
         [TestMethod]
@@ -204,7 +249,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
                 .BeEmpty();
         }
 
-        private static void ValidateExpectResutl(Result<bool> result, string messageError)
+        private static void ValidateExpectResult(Result<bool> result, string messageError)
         {
             result.Value
                 .Should()

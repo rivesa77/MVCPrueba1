@@ -15,7 +15,7 @@ namespace Ricardo.MVCPrueba1.Application.UseCases.Persons.Creates
     {
         private const string DniRequiredMessage = "Person DNI is required";
         private const string DniAlreadyExistMessage = "Person DNI Already Exist";
-        private const string DniInvalidMessage = "Person dni must contain exactly 9 characters";
+        private const string DniInvalidMessage = "Person DNI must contain exactly 9 characters";
         private const string PhoneInvalidMessage = "Person phone must contain exactly 9 numbers";
         private const string ConverterErrorMessage = "Conversion from PersonViewModel to PersonEntity failed, PersonEntity is null";
 
