@@ -85,7 +85,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
         [TestMethod]
         public async Task Execute_WhenDniExist_ReturnsMessageErrorAndCallRepository()
         {
-            // Arrange..
+            // Arrange.
             this.InitializeNonValidMocks(PersonViewModel.DNI, true);
 
             AddPersonUseCase addPersonUseCase = new AddPersonUseCase(
