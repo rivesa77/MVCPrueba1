@@ -9,22 +9,43 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.EntityFrameworkCore;
+    using Ricardo.MVCPrueba1.Domain.Entities;
     using Ricardo.MVCPrueba1.Infrastructure.Data;
 
     [TestClass]
     [TestCategory("E2E.Persons")]
     public class PersonsE2ETests
     {
+        private static readonly string UniqueId = Guid.NewGuid().ToString("N")[..8];
+
+        private static readonly string SearchTerm = $"E2E{UniqueId}";
+
+        private static readonly string ConnectionString =
+            $"Server=(localdb)\\mssqllocaldb;Database=MVCPrueba1_E2E_{UniqueId};Trusted_Connection=True;MultipleActiveResultSets=true";
+
+        private static readonly PersonEntity Person = new PersonEntity
+        {
+            Name = $"Pepe{SearchTerm}",
+            DNI = "80000001A",
+            Phone = "600300001",
+            Email = $"pepe.{UniqueId}@example.com",
+            UserId = string.Empty,
+        };
+
+        private static readonly PersonEntity AnotherPerson = new PersonEntity
+        {
+            Name = $"Antonio{SearchTerm}",
+            DNI = "80000002B",
+            Phone = "600300002",
+            Email = $"antonio.{UniqueId}@example.com",
+            UserId = string.Empty,
+        };
+
         [TestMethod]
         public async Task Persons_WhenCreated_CanBeSearchedAndSortedByNameDescending()
         {
-            string uniqueId = Guid.NewGuid().ToString("N")[..8];
-            string connectionString = CreateConnectionString(uniqueId);
-            string searchTerm = $"E2E {uniqueId}";
-            string aliceName = $"{searchTerm} Alice";
-            string zedName = $"{searchTerm} Zed";
+            await using WebApplicationFactory<Program> factory = CreateFactory(ConnectionString);
 
-            await using WebApplicationFactory<Program> factory = CreateFactory(connectionString);
             HttpClient client = factory.CreateClient(new WebApplicationFactoryClientOptions()
             {
                 AllowAutoRedirect = false,
@@ -34,25 +55,27 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
 
             try
             {
-                await RegisterUser(client, uniqueId).ConfigureAwait(false);
-                await CreatePerson(client, "80000001A", aliceName, $"alice.{uniqueId}@example.com", "600300001").ConfigureAwait(false);
-                await CreatePerson(client, "80000002B", zedName, $"zed.{uniqueId}@example.com", "600300002").ConfigureAwait(false);
+                await RegisterUser(client).ConfigureAwait(false);
+                await CreatePerson(client, Person).ConfigureAwait(false);
+                await CreatePerson(client, AnotherPerson).ConfigureAwait(false);
+
+                string escapeDataString = Uri.EscapeDataString(SearchTerm);
 
                 string personsPage = await GetString(
                     client,
-                    $"/Persons?searchField=Name&searchTerm={Uri.EscapeDataString(searchTerm)}&pageSize=5&sortField=Name&sortDirection=Descending")
+                    $"/Persons?searchField=Name&searchTerm={escapeDataString}&pageSize=5&sortField=Name&sortDirection=Descending")
                     .ConfigureAwait(false);
 
-                StringAssert.Contains(personsPage, zedName);
-                StringAssert.Contains(personsPage, aliceName);
+                StringAssert.Contains(personsPage, AnotherPerson.Name);
+                StringAssert.Contains(personsPage, Person.Name);
 
                 Assert.IsTrue(
-                    personsPage.IndexOf(zedName, StringComparison.Ordinal) < personsPage.IndexOf(aliceName, StringComparison.Ordinal),
-                    "Expected the Zed person to appear before the Alice person when sorting by name descending.");
+                    personsPage.IndexOf(Person.Name, StringComparison.Ordinal) < personsPage.IndexOf(AnotherPerson.Name, StringComparison.Ordinal),
+                    "Expected the Pepe person to appear before the Antonio person when sorting by name descending.");
             }
             finally
             {
-                await DeleteDatabase(connectionString).ConfigureAwait(false);
+                await DeleteDatabase(ConnectionString).ConfigureAwait(false);
             }
         }
 
@@ -66,16 +89,19 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
                 });
         }
 
-        private static async Task RegisterUser(HttpClient client, string uniqueId)
+        private static async Task RegisterUser(HttpClient client)
         {
-            string registerPage = await GetString(client, "/Identity/Account/Register").ConfigureAwait(false);
+            string registerPageUrl = "/Identity/Account/Register";
+
+            string registerPage = await GetString(client, registerPageUrl).ConfigureAwait(false);
+
             string token = GetAntiForgeryToken(registerPage);
 
             using HttpResponseMessage response = await client.PostAsync(
-                "/Identity/Account/Register",
+                registerPageUrl,
                 new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
-                    ["Input.Email"] = $"e2e.{uniqueId}@example.com",
+                    ["Input.Email"] = $"e2e.{UniqueId}@example.com",
                     ["Input.Password"] = "E2eTest1234!",
                     ["Input.ConfirmPassword"] = "E2eTest1234!",
                     ["__RequestVerificationToken"] = token,
@@ -87,16 +113,16 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
                 $"Expected register to redirect after success, but received {(int)response.StatusCode}.");
         }
 
-        private static async Task CreatePerson(HttpClient client, string dni, string name, string email, string phone)
+        private static async Task CreatePerson(HttpClient client, PersonEntity personEntity)
         {
             using HttpResponseMessage response = await client.PostAsync(
                 "/Persons/create",
                 new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
-                    ["DNI"] = dni,
-                    ["Name"] = name,
-                    ["Email"] = email,
-                    ["Phone"] = phone,
+                    ["DNI"] = personEntity.DNI,
+                    ["Name"] = personEntity.Name,
+                    ["Email"] = personEntity.Email,
+                    ["Phone"] = personEntity.Phone,
                 }))
                 .ConfigureAwait(false);
 
@@ -136,11 +162,6 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
 
             await using ApplicationDbContext context = new ApplicationDbContext(options);
             await context.Database.EnsureDeletedAsync().ConfigureAwait(false);
-        }
-
-        private static string CreateConnectionString(string uniqueId)
-        {
-            return $"Server=(localdb)\\mssqllocaldb;Database=MVCPrueba1_E2E_{uniqueId};Trusted_Connection=True;MultipleActiveResultSets=true";
         }
     }
 }
