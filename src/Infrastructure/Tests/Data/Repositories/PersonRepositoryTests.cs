@@ -17,14 +17,44 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
     [TestCategory("Infrastructure.PersonRepository")]
     public class PersonRepositoryTests
     {
-        private static readonly PersonEntity PersonEntity = new PersonEntity()
+        private static readonly PersonEntity PersonOne = new PersonEntity()
         {
+            Name = "Francisco",
+            DNI = "11111111A",
+            Email = $"francisco@email.com",
             UserId = PersonEntityConstants.UserId,
-            Name = PersonEntityConstants.Name,
-            DNI = PersonEntityConstants.Dni,
-            Email = PersonEntityConstants.Email,
-            Id = Guid.NewGuid(),
             Phone = PersonEntityConstants.Phone,
+            Id = Guid.NewGuid(),
+        };
+
+        private static readonly PersonEntity PersonTwo = new PersonEntity()
+        {
+            Name = "Mario",
+            DNI = "22222222B",
+            Email = $"mario@email.com",
+            UserId = PersonEntityConstants.UserId,
+            Phone = PersonEntityConstants.Phone,
+            Id = Guid.NewGuid(),
+        };
+
+        private static readonly PersonEntity PersonThree = new PersonEntity()
+        {
+            Name = "Maria",
+            DNI = "33333333C",
+            Email = $"maria@email.com",
+            UserId = PersonEntityConstants.UserId,
+            Phone = PersonEntityConstants.Phone,
+            Id = Guid.NewGuid(),
+        };
+
+        private static readonly PersonEntity PersonFour = new PersonEntity()
+        {
+            Name = "Marta",
+            DNI = "44444444D",
+            Email = $"marta@email.com",
+            UserId = "OtherUserId",
+            Phone = PersonEntityConstants.Phone,
+            Id = Guid.NewGuid(),
         };
 
         [TestMethod]
@@ -38,7 +68,18 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
         {
             ApplicationDbContext inMemoryDb = MemoryDbContext.GetInMemoryDbContext();
 
-            inMemoryDb.Persons.Add(PersonEntity);
+            PersonEntity personEntity = new PersonEntity()
+            {
+                UserId = PersonEntityConstants.UserId,
+                Name = PersonEntityConstants.Name,
+                DNI = PersonEntityConstants.Dni,
+                Email = PersonEntityConstants.Email,
+                Id = Guid.NewGuid(),
+                Phone = PersonEntityConstants.Phone,
+            };
+
+            inMemoryDb.Persons.Add(personEntity);
+
             await inMemoryDb.SaveChangesAsync();
 
             PersonRepository personRepository = new PersonRepository(inMemoryDb);
@@ -58,24 +99,26 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
             ApplicationDbContext inMemoryDb = MemoryDbContext.GetInMemoryDbContext();
 
             inMemoryDb.Persons.AddRange(
-                CreatePerson("Alice", "11111111A", PersonEntityConstants.UserId),
-                CreatePerson("Alicia", "22222222B", PersonEntityConstants.UserId),
-                CreatePerson("Bob", "33333333C", PersonEntityConstants.UserId),
-                CreatePerson("Alice Other", "44444444D", "OtherUserId"));
+                PersonOne,
+                PersonThree,
+                PersonTwo,
+                PersonFour);
+
             await inMemoryDb.SaveChangesAsync();
 
             PersonRepository personRepository = new PersonRepository(inMemoryDb);
 
+            PersonSearchQuery personSearchQuery = new PersonSearchQuery()
+            {
+                UserId = PersonEntityConstants.UserId,
+                SearchField = PersonSearchField.Name,
+                SearchTerm = "Mari",
+                PageNumber = 1,
+                PageSize = 1,
+            };
+
             (IEnumerable<PersonEntity> persons, int totalItems) = await personRepository
-                .SearchByUserIdAsync(new PersonSearchQuery()
-                {
-                    UserId = PersonEntityConstants.UserId,
-                    SearchField = PersonSearchField.Name,
-                    SearchTerm = "ali",
-                    PageNumber = 1,
-                    PageSize = 1,
-                })
-                .ConfigureAwait(false);
+                .SearchByUserIdAsync(personSearchQuery).ConfigureAwait(false);
 
             totalItems
                 .Should()
@@ -86,7 +129,7 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
                 .ContainSingle()
                 .Which.Name
                 .Should()
-                .Be("Alice");
+                .Be("Maria");
         }
 
         [TestMethod]
@@ -95,12 +138,22 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
             ApplicationDbContext inMemoryDb = MemoryDbContext.GetInMemoryDbContext();
 
             inMemoryDb.Persons.AddRange(
-                CreatePerson("Alice", "11111111A", PersonEntityConstants.UserId),
-                CreatePerson("Alicia", "22222222B", PersonEntityConstants.UserId),
-                CreatePerson("Bob", "33333333C", PersonEntityConstants.UserId));
+                PersonOne,
+                PersonThree,
+                PersonTwo);
+
             await inMemoryDb.SaveChangesAsync();
 
             PersonRepository personRepository = new PersonRepository(inMemoryDb);
+
+            PersonSearchQuery personSearchQuery = new PersonSearchQuery()
+            {
+                UserId = PersonEntityConstants.UserId,
+                SortField = PersonSortField.Dni,
+                SortDirection = PersonSortDirection.Descending,
+                PageNumber = 1,
+                PageSize = 3,
+            };
 
             (IEnumerable<PersonEntity> persons, int totalItems) = await personRepository
                 .SearchByUserIdAsync(new PersonSearchQuery()
@@ -121,19 +174,6 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
                 .Select(person => person.DNI)
                 .Should()
                 .ContainInOrder("33333333C", "22222222B", "11111111A");
-        }
-
-        private static PersonEntity CreatePerson(string name, string dni, string userId)
-        {
-            return new PersonEntity()
-            {
-                UserId = userId,
-                Name = name,
-                DNI = dni,
-                Email = $"{name.Replace(" ", string.Empty)}@email.com",
-                Id = Guid.NewGuid(),
-                Phone = PersonEntityConstants.Phone,
-            };
         }
     }
 }
