@@ -1,4 +1,4 @@
-﻿// <copyright file="PropertyConverterTestBase.cs" company="Ricardo">
+﻿// <copyright file="PropertyConverterWithRequiredFieldTestBase.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
@@ -8,7 +8,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
     using Ricardo.CommonLibraries.Converters;
 
     [TestClass]
-    public abstract class PropertyConverterTestBase<
+    public abstract class PropertyConverterWithRequiredFieldTestBase<
         TSourceClass,
         TDestinationClass,
         TPropertyConverter>
@@ -27,9 +27,9 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
         }
 
         [TestMethod]
-        public void Converter_WithValidData_ReturnExpectedResult()
+        public void Converter_WithValidData_ReturnValidResult()
         {
-            // Arrage.
+            // Arrange.
             TPropertyConverter propertyConverter = this.InitializePropertyConverter();
 
             TSourceClass sourceClass = this.ValidSource();
@@ -47,6 +47,27 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
                 .BeEquivalentTo(expectedValidResult);
         }
 
+        [TestMethod]
+        public void Converter_WithNullData_ReturnEmptyResult()
+        {
+            // Arrange.
+            TPropertyConverter propertyConverter = this.InitializePropertyConverter();
+
+            TSourceClass sourceClass = this.EmptySourceClass();
+
+            TDestinationClass result = this.EmptyDestinationClass();
+
+            // Act.
+            propertyConverter.Convert(sourceClass, result);
+
+            TDestinationClass expectedValidResult = this.ExpectedEmptyDestinationClass();
+
+            // Assert.
+            result
+                .Should()
+                .BeEquivalentTo(expectedValidResult);
+        }
+
         protected abstract TSourceClass ValidSource();
 
         protected abstract TDestinationClass ValidResult();
@@ -57,5 +78,11 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
         {
             return new TPropertyConverter();
         }
+
+        protected abstract TSourceClass EmptySourceClass();
+
+        protected abstract TDestinationClass EmptyDestinationClass();
+
+        protected abstract TDestinationClass ExpectedEmptyDestinationClass();
     }
 }
