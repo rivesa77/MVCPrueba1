@@ -1,6 +1,10 @@
 <Project>
 	<PropertyGroup>
 		<NamespacePrefix>Ricardo</NamespacePrefix>
+		<!-- true: ProjectReference; false: PackageReference -->
+		<ProjectsByReference>true</ProjectsByReference>
+		<CommonLibrariesVersion Condition="'$(CommonLibrariesVersion)' == ''">1.0.2</CommonLibrariesVersion>
+		<CommonLibrariesRoot Condition="'$(CommonLibrariesRoot)' == ''">$(MSBuildThisFileDirectory)..\CommonLibraries\CommonLibraries</CommonLibrariesRoot>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'MVCPrueba1'">
