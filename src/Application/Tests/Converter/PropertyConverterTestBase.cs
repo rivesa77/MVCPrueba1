@@ -30,8 +30,6 @@ namespace Ricardo.Application.Tests.Converter
         public void Converter_WithValidData_ReturnExpectedResult()
         {
             // Arrage.
-            this.InitialiceCustomMocks();
-
             TPropertyConverter propertyConverter = this.InitializePropertyConverter();
 
             TSourceClass sourceClass = this.ValidSource();
@@ -54,10 +52,6 @@ namespace Ricardo.Application.Tests.Converter
         protected abstract TDestinationClass ValidResult();
 
         protected abstract TDestinationClass ExpectedValidResult();
-
-        protected virtual void InitialiceCustomMocks()
-        {
-        }
 
         protected virtual TPropertyConverter InitializePropertyConverter()
         {
