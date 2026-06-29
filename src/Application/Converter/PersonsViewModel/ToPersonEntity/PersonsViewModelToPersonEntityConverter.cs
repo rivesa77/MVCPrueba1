@@ -11,10 +11,10 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
     internal class PersonsViewModelToPersonEntityConverter :
         IPersonsViewModelToPersonEntityConverter
     {
-        private readonly IEnumerable<IPersonsViewModelToPersonEntityPorpertyConverter> propertyConverters;
+        private readonly IEnumerable<IPersonsViewModelToPersonEntityPropertyConverter> propertyConverters;
 
         public PersonsViewModelToPersonEntityConverter(
-            IEnumerable<IPersonsViewModelToPersonEntityPorpertyConverter> propertyConverters)
+            IEnumerable<IPersonsViewModelToPersonEntityPropertyConverter> propertyConverters)
         {
             this.propertyConverters = propertyConverters;
         }
@@ -34,7 +34,7 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
 
         public void Convert(PersonViewModel source, ref PersonEntity destination)
         {
-            foreach (IPersonsViewModelToPersonEntityPorpertyConverter propertyConverter in this.propertyConverters)
+            foreach (IPersonsViewModelToPersonEntityPropertyConverter propertyConverter in this.propertyConverters)
             {
                 propertyConverter.Convert(source, in destination);
             }

@@ -12,7 +12,7 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
         PersonViewModel,
         PersonEntity,
         string>,
-        IPersonsViewModelToPersonEntityPorpertyConverter
+        IPersonsViewModelToPersonEntityPropertyConverter
     {
         protected override string GetPropertyValue(PersonViewModel source)
         {

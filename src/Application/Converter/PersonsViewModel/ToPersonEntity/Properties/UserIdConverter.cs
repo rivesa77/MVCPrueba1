@@ -13,7 +13,7 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
         PersonViewModel,
         PersonEntity,
         string>,
-        IPersonsViewModelToPersonEntityPorpertyConverter
+        IPersonsViewModelToPersonEntityPropertyConverter
     {
         private readonly IPersonUserDetails personUserDetails;
 

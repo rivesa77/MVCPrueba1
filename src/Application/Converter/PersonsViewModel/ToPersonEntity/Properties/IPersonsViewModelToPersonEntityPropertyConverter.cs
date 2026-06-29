@@ -8,7 +8,7 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
     using Ricardo.MVCPrueba1.Application.Models;
     using Ricardo.MVCPrueba1.Domain.Entities;
 
-    internal interface IPersonsViewModelToPersonEntityPorpertyConverter :
+    internal interface IPersonsViewModelToPersonEntityPropertyConverter :
         IClassPropertyConverter<PersonViewModel, PersonEntity>
     {
     }

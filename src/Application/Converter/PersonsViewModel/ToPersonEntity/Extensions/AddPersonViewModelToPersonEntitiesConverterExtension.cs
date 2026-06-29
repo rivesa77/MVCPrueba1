@@ -17,12 +17,12 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
                     PersonsViewModelToPersonEntityConverter>();
 
             services
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, DniConverter>()
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, EmailConverter>()
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, IdConverter>()
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, NameConverter>()
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, PhoneConverter>()
-                .AddScoped<IPersonsViewModelToPersonEntityPorpertyConverter, UserIdConverter>();
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, DniConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, EmailConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, IdConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, NameConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, PhoneConverter>()
+                .AddScoped<IPersonsViewModelToPersonEntityPropertyConverter, UserIdConverter>();
 
             return services;
         }

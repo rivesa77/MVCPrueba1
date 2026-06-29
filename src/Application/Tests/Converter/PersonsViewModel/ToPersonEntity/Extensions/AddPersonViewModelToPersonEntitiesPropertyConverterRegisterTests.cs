@@ -16,7 +16,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter.PersonsViewModel.ToPers
         [TestMethod]
         public void AddPersonViewModelToPersonEntitiesConverter_WhenCalled_RegistersAllPropertyConverters()
         {
-            AssertRegisterPropertyConverters<IPersonsViewModelToPersonEntityPorpertyConverter>(
+            AssertRegisterPropertyConverters<IPersonsViewModelToPersonEntityPropertyConverter>(
                 services => services.AddPersonViewModelToPersonEntitiesConverter());
         }
     }

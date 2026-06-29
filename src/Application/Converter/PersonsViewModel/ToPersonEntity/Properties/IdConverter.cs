@@ -13,7 +13,7 @@ namespace Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEnti
         PersonViewModel,
         PersonEntity,
         Guid>,
-        IPersonsViewModelToPersonEntityPorpertyConverter
+        IPersonsViewModelToPersonEntityPropertyConverter
     {
         protected override Guid GetPropertyValue(PersonViewModel source)
         {
