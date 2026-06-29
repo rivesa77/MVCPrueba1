@@ -26,22 +26,5 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
         {
             return EmptyPersonEntity;
         }
-
-        /// <inheritdoc/>
-        protected override PersonEntity EmptyDestinationClass()
-        {
-            return default;
-        }
-
-        /// <inheritdoc/>
-        protected override TSourceClass EmptySourceClass()
-        {
-            return default;
-        }
-
-        protected override PersonEntity ExpectedEmptyDestinationClass()
-        {
-            return default;
-        }
     }
 }

@@ -54,19 +54,17 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
             // Arrange.
             TPropertyConverter propertyConverter = this.InitializePropertyConverter();
 
-            TSourceClass sourceClass = this.EmptySourceClass();
+            TSourceClass sourceClass = default;
 
-            TDestinationClass result = this.EmptyDestinationClass();
+            TDestinationClass result = default;
 
             // Act.
             propertyConverter.Convert(sourceClass, result);
 
-            TDestinationClass expectedValidResult = this.ExpectedEmptyDestinationClass();
-
             // Assert.
             result
                 .Should()
-                .BeEquivalentTo(expectedValidResult);
+                .BeNull();
         }
 
         protected abstract TSourceClass ValidSource();
@@ -74,12 +72,6 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
         protected abstract TDestinationClass ValidResult();
 
         protected abstract TDestinationClass ExpectedValidResult();
-
-        protected abstract TSourceClass EmptySourceClass();
-
-        protected abstract TDestinationClass EmptyDestinationClass();
-
-        protected abstract TDestinationClass ExpectedEmptyDestinationClass();
 
         protected virtual TPropertyConverter InitializePropertyConverter()
         {
