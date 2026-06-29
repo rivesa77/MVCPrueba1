@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.Application.Tests.Converter.PersonsViewModel.ToPersonEntity.Properties
+namespace Ricardo.MVCPrueba1.Application.Tests.Converter.PersonsViewModel.ToPersonEntity.Properties
 {
     using Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity.Properties;
     using Ricardo.MVCPrueba1.Application.Models;
