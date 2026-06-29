@@ -11,17 +11,10 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter.PersonsViewModel.ToPers
 
     /// <inheritdoc/>
     [TestClass]
-    internal class DniConverterTests : PropertyConverterWithRequiredFieldTestBase<
+    internal class DniConverterTests : PropertyConverterPersonEntityTestBase<
         PersonViewModel,
-        PersonEntity,
         DniConverter>
     {
-        private static readonly PersonEntity EmptyPersonEntity = new PersonEntity()
-        {
-            UserId = string.Empty,
-            DNI = string.Empty,
-        };
-
         /// <inheritdoc/>
         protected override PersonEntity ExpectedValidResult()
         {
@@ -35,12 +28,6 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter.PersonsViewModel.ToPers
         }
 
         /// <inheritdoc/>
-        protected override PersonEntity ValidResult()
-        {
-            return EmptyPersonEntity;
-        }
-
-        /// <inheritdoc/>
         protected override PersonViewModel ValidSource()
         {
             PersonViewModel personViewModel = new PersonViewModel()
@@ -49,23 +36,6 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter.PersonsViewModel.ToPers
             };
 
             return personViewModel;
-        }
-
-        /// <inheritdoc/>
-        protected override PersonEntity EmptyDestinationClass()
-        {
-            return EmptyPersonEntity;
-        }
-
-        /// <inheritdoc/>
-        protected override PersonViewModel EmptySourceClass()
-        {
-            return new PersonViewModel();
-        }
-
-        protected override PersonEntity ExpectedEmptyDestinationClass()
-        {
-            return EmptyPersonEntity;
         }
     }
 }
