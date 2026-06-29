@@ -74,15 +74,15 @@ namespace Ricardo.MVCPrueba1.Application.Tests.Converter
 
         protected abstract TDestinationClass ExpectedValidResult();
 
-        protected virtual TPropertyConverter InitializePropertyConverter()
-        {
-            return new TPropertyConverter();
-        }
-
         protected abstract TSourceClass EmptySourceClass();
 
         protected abstract TDestinationClass EmptyDestinationClass();
 
         protected abstract TDestinationClass ExpectedEmptyDestinationClass();
+
+        protected virtual TPropertyConverter InitializePropertyConverter()
+        {
+            return new TPropertyConverter();
+        }
     }
 }
