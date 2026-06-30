@@ -1,0 +1,6 @@
+﻿{
+  "stryker-config": {
+    "solution": "../../../MVCPrueba1.slnx",
+    "project": "MVCPrueba1.csproj"
+  }
+}
