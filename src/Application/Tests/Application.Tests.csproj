@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(ProjectsByReference)' != 'true'">
-		<PackageReference Include="CommonLibraries.Extensions" Version="$(CommonLibrariesVersion)" />
+		<PackageReference Include="CommonLibraries.Extensions" Version="$(CommonLibrariesExtensionsVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>

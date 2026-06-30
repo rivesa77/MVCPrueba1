@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(ProjectsByReference)' != 'true'">
-    <PackageReference Include="CommonLibraries.Converters" Version="$(CommonLibrariesVersion)" />
+    <PackageReference Include="CommonLibraries.Converters" Version="$(CommonLibrariesConvertersVersion)" />
   </ItemGroup>
 
   <ItemGroup>
