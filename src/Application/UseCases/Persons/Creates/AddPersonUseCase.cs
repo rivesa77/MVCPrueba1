@@ -4,7 +4,7 @@
 
 namespace Ricardo.MVCPrueba1.Application.UseCases.Persons.Creates
 {
-    using Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
+    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity;
     using Ricardo.MVCPrueba1.Application.Models;
     using Ricardo.MVCPrueba1.Application.Models.Extensions;
     using Ricardo.MVCPrueba1.Application.Repositories;

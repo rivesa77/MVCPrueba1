@@ -7,7 +7,7 @@ namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
     using FluentAssertions;
     using Moq;
     using Ricardo.CommonLibraries.Extensions.Tests.Mocks;
-    using Ricardo.MVCPrueba1.Application.Converter.PersonsViewModel.ToPersonEntity;
+    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity;
     using Ricardo.MVCPrueba1.Application.Models;
     using Ricardo.MVCPrueba1.Application.Repositories;
     using Ricardo.MVCPrueba1.Application.Tests.Constants;
