@@ -133,9 +133,9 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
 
             this.applicationDbContext.Persons.Update(personEntity);
 
-            int result = await this.applicationDbContext.SaveChangesAsync().ConfigureAwait(false);
+            int affectedRows = await this.applicationDbContext.SaveChangesAsync().ConfigureAwait(false);
 
-            return result > 0;
+            return affectedRows == 1;
         }
 
         public async Task<bool> DeletePersonAsync(PersonEntity personEntity)
@@ -145,11 +145,11 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Repositories
                 return false;
             }
 
-            int result = await this.applicationDbContext.Persons
+            int affectedRows = await this.applicationDbContext.Persons
                 .Where(person => person.Id == personEntity.Id && person.UserId == personEntity.UserId)
                 .ExecuteDeleteAsync();
 
-            return result > 0;
+            return affectedRows == 1;
         }
 
         private static IQueryable<PersonEntity> ApplySearch(
