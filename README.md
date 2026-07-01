@@ -86,6 +86,39 @@ Un converter resuelve el mapeo entre objetos, pero no sustituye el papel de un D
 proyecto evoluciona, se deberian introducir DTOs especificos y mantener los converters unicamente como mecanismo de
 mapeo entre esos DTOs y los modelos internos.
 
+### Que son los converters y como se utilizan
+
+Los converters son componentes de la capa `Application` encargados de crear un objeto de destino a partir de un
+objeto de origen. Centralizan el mapeo para evitar que los controladores y los casos de uso copien o transformen
+propiedades manualmente.
+
+Cada conversion se divide en dos niveles:
+
+- Un converter de clase coordina la conversion completa, por ejemplo
+  `PersonsViewModelToPersonEntityConverter`.
+- Varios converters de propiedad se ocupan de campos concretos como DNI, nombre, email, telefono, identificador y
+  usuario. Tambien pueden aplicar transformaciones; por ejemplo, `DniConverter` convierte el DNI a mayusculas.
+
+Los converters y sus converters de propiedad se registran con ciclo de vida `Scoped` en el contenedor de inyeccion de
+dependencias. Los casos de uso reciben la interfaz correspondiente mediante el constructor y llaman a `Convert`:
+
+```csharp
+private readonly IPersonsViewModelToPersonEntityConverter converter;
+
+PersonEntity personEntity = this.converter.Convert(personViewModel);
+```
+
+El flujo utilizado por `AddPersonUseCase` es:
+
+1. La UI entrega un `PersonViewModel` al caso de uso.
+2. El caso de uso valida los datos.
+3. `IPersonsViewModelToPersonEntityConverter` crea un `PersonEntity`.
+4. Los converters de propiedad rellenan y transforman sus campos.
+5. El caso de uso entrega la entidad resultante a `IPersonRepository`.
+
+El mismo enfoque se utiliza para convertir `PersonEntity` en `PersonViewModel` al mostrar datos y
+`PersonSearchCriteria` en `PersonSearchQuery` al realizar busquedas.
+
 ## Infrastructure
 
 Capa de infraestructura.
