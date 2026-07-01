@@ -4,26 +4,31 @@
 	<label class="form-label" asp-for="DNI">
 		Person DNI
 	</label>
-	<input type="text" asp-for="DNI" class="form-control" placeholder="12345678A" required minlength="9" maxlength="9">
+	<input type="text" asp-for="DNI" class="form-control" placeholder="12345678A" required minlength="9" maxlength="9"
+		   data-required-message="DNI is required." data-invalid-message="DNI must contain exactly 9 characters.">
 </div>
 
 <div class="form-field">
 	<label class="form-label" asp-for="Name">
 		Person Name
 	</label>
-	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="50">
+	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="50"
+		   data-required-message="Name is required.">
 </div>
 
 <div class="form-field">
 	<label class="form-label" asp-for="Phone">
 		Person Phone
 	</label>
-	<input type="tel" asp-for="Phone" class="form-control" placeholder="600000000" required inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9" data-digits-only="true">
+	<input type="tel" asp-for="Phone" class="form-control" placeholder="600000000" required inputmode="numeric"
+		   pattern="[0-9]{9}" minlength="9" maxlength="9" data-digits-only="true"
+		   data-required-message="Phone number is required." data-invalid-message="Phone number must contain exactly 9 digits.">
 </div>
 
 <div class="form-field">
 	<label class="form-label" asp-for="Email">
 		Person Email
 	</label>
-	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com" required maxlength="75">
+	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com" required maxlength="75"
+		   data-required-message="Email is required.">
 </div>

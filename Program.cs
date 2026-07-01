@@ -4,6 +4,8 @@
 
 #pragma warning disable SA1200 // Using directives should be placed correctly
 
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Ricardo.MVCPrueba1.Application.Extensions;
 using Ricardo.MVCPrueba1.Infrastructure.Data;
@@ -20,6 +22,16 @@ var connectionString = builder
 
 builder.Services
     .AddControllersWithViews();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    CultureInfo englishCulture = CultureInfo.GetCultureInfo("en-US");
+
+    options.DefaultRequestCulture = new RequestCulture(englishCulture);
+    options.SupportedCultures = [englishCulture];
+    options.SupportedUICultures = [englishCulture];
+    options.ApplyCurrentCultureToResponseHeaders = true;
+});
 
 builder.Services
     .AddApplicationServiceCollection()
@@ -48,6 +60,8 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.UseRequestLocalization();
 
 app.UseRouting();
 

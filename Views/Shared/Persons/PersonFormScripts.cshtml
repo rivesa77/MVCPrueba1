@@ -2,6 +2,22 @@
 	(() => {
 		const fields = ['DNI', 'Name', 'Phone', 'Email'];
 
+		document.querySelectorAll('[data-required-message], [data-invalid-message]').forEach((input) => {
+			input.addEventListener('invalid', () => {
+				input.setCustomValidity('');
+
+				if (input.validity.valueMissing) {
+					input.setCustomValidity(input.dataset.requiredMessage ?? 'This field is required.');
+				} else if (input.validity.patternMismatch || input.validity.tooShort || input.validity.typeMismatch) {
+					input.setCustomValidity(input.dataset.invalidMessage ?? 'The entered value is invalid.');
+				}
+			});
+
+			input.addEventListener('input', () => {
+				input.setCustomValidity('');
+			});
+		});
+
 		document.querySelectorAll('[data-person-form="true"]').forEach((form) => {
 			const shouldDetectChanges = form.dataset.detectPersonChanges === 'true';
 			const noChangesMessageSelector = form.dataset.noChangesMessage;
