@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Tests.Converters
+namespace Ricardo.CleanArchitectureMVC.Application.Tests.Converters
 {
     using FluentAssertions;
     using Microsoft.Extensions.DependencyInjection;

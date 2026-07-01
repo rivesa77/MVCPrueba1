@@ -1,6 +1,6 @@
-﻿{
+{
   "stryker-config": {
-    "solution": "../../../MVCPrueba1.slnx",
+    "solution": "../../../CleanArchitectureMVC.slnx",
     "project": "Application.Tests.csproj"
   }
 }

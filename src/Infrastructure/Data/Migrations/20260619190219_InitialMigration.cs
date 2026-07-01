@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Data.Migrations
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

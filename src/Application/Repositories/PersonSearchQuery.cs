@@ -2,9 +2,9 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Repositories
+namespace Ricardo.CleanArchitectureMVC.Application.Repositories
 {
-    using Ricardo.MVCPrueba1.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
 
     public class PersonSearchQuery
     {

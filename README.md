@@ -1,12 +1,12 @@
-# MVCPrueba1
+# CleanArchitectureMVC
 
 Proyecto ASP.NET Core MVC organizado con una estructura cercana a Clean Architecture.
 
 ## Estructura de capas
 
 ```text
-MVCPrueba1
-|-- MVCPrueba1.csproj
+CleanArchitectureMVC
+|-- CleanArchitectureMVC.csproj
 |-- Controllers
 |-- Views
 |-- wwwroot
@@ -16,7 +16,7 @@ MVCPrueba1
     `-- Infrastructure
 ```
 
-## MVCPrueba1
+## CleanArchitectureMVC
 
 Proyecto Web.
 
@@ -111,7 +111,7 @@ Web conecta todo.
 
 ## Migraciones con Entity Framework Core
 
-Despues de separar la solucion en capas, las migraciones ya no pertenecen al proyecto Web `MVCPrueba1`.
+Despues de separar la solucion en capas, las migraciones ya no pertenecen al proyecto Web `CleanArchitectureMVC`.
 
 Ahora viven en:
 
@@ -122,7 +122,7 @@ src/Infrastructure
 El proyecto que arranca la aplicacion sigue siendo:
 
 ```text
-MVCPrueba1
+CleanArchitectureMVC
 ```
 
 Por eso los comandos de EF deben indicar siempre:
@@ -185,7 +185,7 @@ dotnet ef migrations remove
 puede aparecer este error:
 
 ```text
-Your target project 'MVCPrueba1' doesn't match your migrations assembly 'Infrastructure'.
+Your target project 'CleanArchitectureMVC' doesn't match your migrations assembly 'Infrastructure'.
 ```
 
 Esto ocurre porque EF intenta usar el proyecto Web como proyecto de migraciones, pero las migraciones estan en
@@ -210,19 +210,19 @@ Infrastructure
 2. Para crear una migracion:
 
 ```powershell
-Add-Migration NombreDeLaMigracion -StartupProject MVCPrueba1 -Context ApplicationDbContext
+Add-Migration NombreDeLaMigracion -StartupProject CleanArchitectureMVC -Context ApplicationDbContext
 ```
 
 3. Para eliminar la ultima migracion:
 
 ```powershell
-Remove-Migration -StartupProject MVCPrueba1 -Context ApplicationDbContext
+Remove-Migration -StartupProject CleanArchitectureMVC -Context ApplicationDbContext
 ```
 
 4. Para actualizar la base de datos:
 
 ```powershell
-Update-Database -StartupProject MVCPrueba1 -Context ApplicationDbContext
+Update-Database -StartupProject CleanArchitectureMVC -Context ApplicationDbContext
 ```
 
 ## Compilar

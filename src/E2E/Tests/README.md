@@ -9,7 +9,7 @@ El test usa `WebApplicationFactory<Program>` para arrancar la aplicacion dentro 
 La prueba crea una base de datos LocalDB temporal con un nombre unico:
 
 ```text
-MVCPrueba1_E2E_{uniqueId}
+CleanArchitectureMVC_E2E_{uniqueId}
 ```
 
 Al arrancar la aplicacion, se ejecuta el flujo normal de `Program.cs`: migraciones, configuracion de Identity, seed y rutas MVC/Razor Pages.
@@ -57,7 +57,7 @@ dotnet test src\E2E\Tests\E2E.Tests.csproj
 Tambien se puede ejecutar toda la solucion:
 
 ```powershell
-dotnet test MVCPrueba1.slnx
+dotnet test CleanArchitectureMVC.slnx
 ```
 
 ## Pruebas de mutacion con Stryker
@@ -90,8 +90,8 @@ La configuracion utilizada es:
 ```json
 {
   "stryker-config": {
-    "solution": "../../../MVCPrueba1.slnx",
-    "project": "MVCPrueba1.csproj"
+    "solution": "../../../CleanArchitectureMVC.slnx",
+    "project": "CleanArchitectureMVC.csproj"
   }
 }
 ```

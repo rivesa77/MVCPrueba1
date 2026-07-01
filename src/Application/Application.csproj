@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-	<AssemblyName>Ricardo.MVCPrueba1.Application</AssemblyName>	  
+	<AssemblyName>Ricardo.CleanArchitectureMVC.Application</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
@@ -38,7 +38,7 @@
 
   <ItemGroup>
 	  <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-		  <_Parameter1>Ricardo.MVCPrueba1.Application.Tests</_Parameter1>
+		  <_Parameter1>Ricardo.CleanArchitectureMVC.Application.Tests</_Parameter1>
 	  </AssemblyAttribute>
   	  <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
  		  <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-	<AssemblyName>Ricardo.MVCPrueba1.Domain</AssemblyName>
+	<AssemblyName>Ricardo.CleanArchitectureMVC.Domain</AssemblyName>
 	<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>

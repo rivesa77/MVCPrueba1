@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery
+namespace Ricardo.CleanArchitectureMVC.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery
 {
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Searches;
     using Ricardo.CommonLibraries.Converters;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Searches;
 
     /// <inheritdoc/>
     internal interface IPersonsSearchCriteriaToPersonSearchQueryConverter : IClassConverter<PersonSearchCriteria, PersonSearchQuery>

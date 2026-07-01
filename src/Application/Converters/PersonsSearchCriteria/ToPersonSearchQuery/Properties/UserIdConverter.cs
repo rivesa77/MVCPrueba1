@@ -2,12 +2,12 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Properties
+namespace Ricardo.CleanArchitectureMVC.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Properties
 {
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Searches;
+    using Ricardo.CleanArchitectureMVC.Application.UserInfo;
     using Ricardo.CommonLibraries.Converters;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Searches;
-    using Ricardo.MVCPrueba1.Application.UserInfo;
 
     /// <inheritdoc/>
     internal class UserIdConverter : ClassPropertyConverterBase<

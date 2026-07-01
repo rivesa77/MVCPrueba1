@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Models
+namespace Ricardo.CleanArchitectureMVC.Application.Models
 {
     public class PersonSearchViewModel
     {

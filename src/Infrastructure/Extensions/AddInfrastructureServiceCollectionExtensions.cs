@@ -2,17 +2,17 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Extensions
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Extensions
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Application.UserInfo;
-    using Ricardo.MVCPrueba1.Infrastructure.Data;
-    using Ricardo.MVCPrueba1.Infrastructure.Data.Repositories;
-    using Ricardo.MVCPrueba1.Infrastructure.UserInfo;
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Application.UserInfo;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data.Repositories;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.UserInfo;
 
     public static class AddInfrastructureServiceCollectionExtensions
     {

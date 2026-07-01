@@ -2,16 +2,16 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Tests.Converters.PersonsViewModel.ToPersonEntity.Properties
+namespace Ricardo.CleanArchitectureMVC.Application.Tests.Converters.PersonsViewModel.ToPersonEntity.Properties
 {
     using FluentAssertions;
     using Moq;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity.Properties;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Tests.Constants;
+    using Ricardo.CleanArchitectureMVC.Application.UserInfo;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using Ricardo.CommonLibraries.Extensions.Tests.Mocks;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity.Properties;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.Tests.Constants;
-    using Ricardo.MVCPrueba1.Application.UserInfo;
-    using Ricardo.MVCPrueba1.Domain.Entities;
 
     [TestCategory("Converter")]
     [TestClass]

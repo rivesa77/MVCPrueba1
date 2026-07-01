@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Extensions
+namespace Ricardo.CleanArchitectureMVC.Application.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Ricardo.MVCPrueba1.Application.Converters.Extensions;
-    using Ricardo.MVCPrueba1.Application.UseCases.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Extensions;
 
     public static class AddApplicationServiceCollectionExtensions
     {

@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Infrastructure.UserInfo
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.UserInfo
 {
     using System.Security.Claims;
     using Microsoft.AspNetCore.Http;
-    using Ricardo.MVCPrueba1.Application.UserInfo;
+    using Ricardo.CleanArchitectureMVC.Application.UserInfo;
 
     public class PersonUserDetails : IPersonUserDetails
     {

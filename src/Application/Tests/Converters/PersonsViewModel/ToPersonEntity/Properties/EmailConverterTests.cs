@@ -1,14 +1,14 @@
-﻿// <copyright file="EmailConverterTests.cs" company="Ricardo">
+// <copyright file="EmailConverterTests.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Tests.Converters.PersonsViewModel.ToPersonEntity.Properties
+namespace Ricardo.CleanArchitectureMVC.Application.Tests.Converters.PersonsViewModel.ToPersonEntity.Properties
 {
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity.Properties;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.Tests.Constants;
-    using Ricardo.MVCPrueba1.Application.Tests.Converters;
-    using Ricardo.MVCPrueba1.Domain.Entities;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity.Properties;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Tests.Constants;
+    using Ricardo.CleanArchitectureMVC.Application.Tests.Converters;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
 
     /// <inheritdoc/>
     [TestClass]

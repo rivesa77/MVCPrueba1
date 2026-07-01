@@ -2,10 +2,10 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Tests.Data.Repositories
 {
     using Microsoft.EntityFrameworkCore;
-    using Ricardo.MVCPrueba1.Infrastructure.Data;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
 
     internal class MemoryDbContext
     {

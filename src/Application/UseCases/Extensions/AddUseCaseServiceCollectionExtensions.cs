@@ -2,14 +2,14 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.UseCases.Extensions
+namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Creates;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Deletes;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Gets;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Searches;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Updates;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Deletes;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Gets;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Searches;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates;
 
     public static class AddUseCaseServiceCollectionExtensions
     {

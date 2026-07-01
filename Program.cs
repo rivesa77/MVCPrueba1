@@ -7,9 +7,9 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
-using Ricardo.MVCPrueba1.Application.Extensions;
-using Ricardo.MVCPrueba1.Infrastructure.Data;
-using Ricardo.MVCPrueba1.Infrastructure.Extensions;
+using Ricardo.CleanArchitectureMVC.Application.Extensions;
+using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
+using Ricardo.CleanArchitectureMVC.Infrastructure.Extensions;
 
 #pragma warning restore SA1200 // Using directives should be placed correctly
 

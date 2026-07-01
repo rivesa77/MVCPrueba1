@@ -2,11 +2,11 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Converters.PersonEntities.ToPersonViewModel.Properties
+namespace Ricardo.CleanArchitectureMVC.Application.Converters.PersonEntities.ToPersonViewModel.Properties
 {
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using Ricardo.CommonLibraries.Converters;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Domain.Entities;
 
     internal class NameConverter : ClassPropertyConverterBase<
         PersonEntity,

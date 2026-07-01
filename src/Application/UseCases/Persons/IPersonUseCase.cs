@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.UseCases.Persons
+namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons
 {
     using ROP;
 

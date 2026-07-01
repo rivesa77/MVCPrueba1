@@ -1,11 +1,11 @@
-﻿// <copyright file="PropertyConverterPersonEntityTestBase.cs" company="Ricardo">
+// <copyright file="PropertyConverterPersonEntityTestBase.cs" company="Ricardo">
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Tests.Converters
+namespace Ricardo.CleanArchitectureMVC.Application.Tests.Converters
 {
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using Ricardo.CommonLibraries.Converters;
-    using Ricardo.MVCPrueba1.Domain.Entities;
 
     [TestCategory("PropertyConverterPersonEntity")]
     internal abstract class PropertyConverterPersonEntityTestBase<TSourceClass, TPropertyConverter> : PropertyConverterWithRequiredFieldTestBase<

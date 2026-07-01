@@ -2,17 +2,17 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Tests.UseCases.Persons.Creates
+namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Creates
 {
     using FluentAssertions;
     using Moq;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Application.Tests.Constants;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using Ricardo.CommonLibraries.Extensions.Tests.Mocks;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Application.Tests.Constants;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Creates;
-    using Ricardo.MVCPrueba1.Domain.Entities;
     using ROP;
 
     [TestClass]

@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.UserInfo
+namespace Ricardo.CleanArchitectureMVC.Application.UserInfo
 {
     public interface IPersonUserDetails
     {

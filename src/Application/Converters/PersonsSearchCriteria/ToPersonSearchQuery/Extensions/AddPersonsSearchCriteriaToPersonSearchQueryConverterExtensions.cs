@@ -2,10 +2,10 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Extensions
+namespace Ricardo.CleanArchitectureMVC.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Properties;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Properties;
 
     internal static class AddPersonsSearchCriteriaToPersonSearchQueryConverterExtensions
     {

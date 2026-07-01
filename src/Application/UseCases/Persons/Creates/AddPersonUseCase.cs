@@ -2,13 +2,13 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.UseCases.Persons.Creates
+namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates
 {
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.Models.Extensions;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Domain.Entities;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Models.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using ROP;
 
     internal class AddPersonUseCase : IAddPersonUseCase

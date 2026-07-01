@@ -2,16 +2,16 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Tests.Data.Repositories
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Tests.Data.Repositories
 {
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.Repositories;
-    using Ricardo.MVCPrueba1.Domain.Entities;
-    using Ricardo.MVCPrueba1.Infrastructure.Data;
-    using Ricardo.MVCPrueba1.Infrastructure.Data.Repositories;
-    using Ricardo.MVCPrueba1.Infrastructure.Tests.Constants;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.Repositories;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data.Repositories;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Tests.Constants;
 
     [TestClass]
     [TestCategory("Infrastructure.PersonRepository")]

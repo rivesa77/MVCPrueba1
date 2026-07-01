@@ -2,7 +2,7 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
+namespace Ricardo.CleanArchitectureMVC.E2E.Tests.Persons
 {
     using System.Net;
     using System.Text.RegularExpressions;
@@ -10,8 +10,8 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.EntityFrameworkCore;
-    using Ricardo.MVCPrueba1.Domain.Entities;
-    using Ricardo.MVCPrueba1.Infrastructure.Data;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
+    using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
 
     [TestClass]
     [TestCategory("E2E.Persons")]
@@ -22,7 +22,7 @@ namespace Ricardo.MVCPrueba1.E2E.Tests.Persons
         private static readonly string SearchTerm = $"E2E{UniqueId}";
 
         private static readonly string ConnectionString =
-            $"Server=(localdb)\\mssqllocaldb;Database=MVCPrueba1_E2E_{UniqueId};Trusted_Connection=True;MultipleActiveResultSets=true";
+            $"Server=(localdb)\\mssqllocaldb;Database=CleanArchitectureMVC_E2E_{UniqueId};Trusted_Connection=True;MultipleActiveResultSets=true";
 
         private static readonly PersonEntity Person = new PersonEntity
         {

@@ -2,12 +2,12 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Controllers.Persons
+namespace Ricardo.CleanArchitectureMVC.Controllers.Persons
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Application.UseCases.Persons.Updates;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates;
     using ROP;
 
     [Authorize]

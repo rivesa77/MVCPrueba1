@@ -2,12 +2,12 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Converters.Extensions
+namespace Ricardo.CleanArchitectureMVC.Application.Converters.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonEntities.ToPersonViewModel.Extensions;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Extensions;
-    using Ricardo.MVCPrueba1.Application.Converters.PersonsViewModel.ToPersonEntity.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonEntities.ToPersonViewModel.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsSearchCriteria.ToPersonSearchQuery.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity.Extensions;
 
     internal static class AddConvertersServiceCollectionExtension
     {

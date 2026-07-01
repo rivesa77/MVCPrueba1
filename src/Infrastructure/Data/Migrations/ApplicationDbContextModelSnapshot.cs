@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ricardo.MVCPrueba1.Infrastructure.Data;
+using Ricardo.CleanArchitectureMVC.Infrastructure.Data;
 
 #nullable disable
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Data.Migrations
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Ricardo.MVCPrueba1.Domain.Entities.PersonEntity", b =>
+            modelBuilder.Entity("Ricardo.CleanArchitectureMVC.Domain.Entities.PersonEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -255,7 +255,7 @@ namespace Ricardo.MVCPrueba1.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Ricardo.MVCPrueba1.Domain.Entities.PersonEntity", b =>
+            modelBuilder.Entity("Ricardo.CleanArchitectureMVC.Domain.Entities.PersonEntity", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()

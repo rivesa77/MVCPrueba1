@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
-		<AssemblyName>Ricardo.MVCPrueba1.Application.Tests</AssemblyName>
+		<AssemblyName>Ricardo.CleanArchitectureMVC.Application.Tests</AssemblyName>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<IsPackable>false</IsPackable>

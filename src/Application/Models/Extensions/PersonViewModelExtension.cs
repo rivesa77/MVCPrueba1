@@ -2,12 +2,12 @@
 //     Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Application.Models.Extensions
+namespace Ricardo.CleanArchitectureMVC.Application.Models.Extensions
 {
     using System;
     using System.Linq;
-    using Ricardo.MVCPrueba1.Application.Models;
-    using Ricardo.MVCPrueba1.Domain.Entities;
+    using Ricardo.CleanArchitectureMVC.Application.Models;
+    using Ricardo.CleanArchitectureMVC.Domain.Entities;
 
     internal static class PersonViewModelExtension
     {

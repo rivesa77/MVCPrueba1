@@ -8,27 +8,31 @@
 		<CommonLibrariesRoot Condition="'$(CommonLibrariesRoot)' == ''">$(MSBuildThisFileDirectory)..\CommonLibraries\CommonLibraries</CommonLibrariesRoot>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'MVCPrueba1'">
-		<RootNamespace>$(NamespacePrefix).MVCPrueba1</RootNamespace>
+	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'CleanArchitectureMVC'">
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Application'">
-		<RootNamespace>$(NamespacePrefix).Application</RootNamespace>
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.Application</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Application.Tests'">
-		<RootNamespace>$(NamespacePrefix).Application.Tests</RootNamespace>
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.Application.Tests</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Domain'">
-		<RootNamespace>$(NamespacePrefix).Domain</RootNamespace>
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.Domain</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Infrastructure'">
-		<RootNamespace>$(NamespacePrefix).Infrastructure</RootNamespace>
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.Infrastructure</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Infrastructure.Tests'">
-		<RootNamespace>$(NamespacePrefix).Infrastructure.Tests</RootNamespace>
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.Infrastructure.Tests</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(MSBuildProjectName)' == 'E2E.Tests'">
+		<RootNamespace>$(NamespacePrefix).CleanArchitectureMVC.E2E.Tests</RootNamespace>
 	</PropertyGroup>
 </Project>

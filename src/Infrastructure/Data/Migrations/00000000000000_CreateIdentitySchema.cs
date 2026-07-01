@@ -2,7 +2,7 @@
 // Copyright (c) Ricardo. All rights reserved.
 // </copyright>
 
-namespace Ricardo.MVCPrueba1.Infrastructure.Data.Migrations
+namespace Ricardo.CleanArchitectureMVC.Infrastructure.Data.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore.Metadata;
