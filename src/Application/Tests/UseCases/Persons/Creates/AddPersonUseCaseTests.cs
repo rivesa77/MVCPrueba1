@@ -17,7 +17,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
     using ROP;
 
     [TestClass]
-    [TestCategory("Application.UsesCases.AddPersonUseCase")]
+    [TestCategory("AddPersonUseCase")]
     public class AddPersonUseCaseTests
     {
         private const string DniAlreadyExistMessage = "Person DNI Already Exist";

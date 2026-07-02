@@ -16,7 +16,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Update
     using ROP;
 
     [TestClass]
-    [TestCategory("Application.UsesCases.UpdatePersonUseCase")]
+    [TestCategory("UpdatePersonUseCase")]
     public class UpdatePersonUseCaseTests
     {
         private Mock<IPersonRepository> mockPersonRepository;

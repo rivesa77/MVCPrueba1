@@ -15,7 +15,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
     internal class UpdatePersonUseCase : IUpdatePersonUseCase
     {
-        private const string PersonCantBeUpdateMessage = "Person DNI Already Exist";
+        private const string PersonCantBeUpdateMessage = "The person can't be updated";
         private const string PersonNotFoundMessage = "Person not found";
         private const string PersonNonChangeMessage = "No changes to update";
         private const string PersonDniExistMessage = "Person DNI Already Exist";
