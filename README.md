@@ -2,6 +2,25 @@
 
 Proyecto ASP.NET Core MVC organizado con una estructura cercana a Clean Architecture.
 
+## Paquetes NuGet locales
+
+Los paquetes propios `CommonLibraries.Converters` y `CommonLibraries.Extensions` todavia no estan publicados en
+NuGet.org ni en otro registro remoto. Durante el desarrollo se generan y publican inicialmente en una ruta local del
+equipo del autor.
+
+Para que esa ruta personal no sea necesaria al clonar y probar el proyecto, los archivos `.nupkg` requeridos se
+incluyen en el directorio [`local-packages`](local-packages/README.md). El archivo `NuGet.config` registra
+`./local-packages` como una fuente NuGet relativa al repositorio, mientras que las versiones utilizadas se definen en
+`Directory.Build.props`.
+
+De este modo, cualquier equipo puede restaurar las dependencias, compilar y ejecutar las pruebas de forma local:
+
+```powershell
+dotnet restore CleanArchitectureMVC.slnx
+dotnet build CleanArchitectureMVC.slnx
+dotnet test CleanArchitectureMVC.slnx
+```
+
 ## Estructura de capas
 
 ```text
