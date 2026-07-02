@@ -12,7 +12,7 @@
 	<label class="form-label" asp-for="Name">
 		Person Name
 	</label>
-	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="50"
+	<input type="text" asp-for="Name" class="form-control" placeholder="Full name" required maxlength="100"
 		   data-required-message="Name is required.">
 </div>
 
@@ -29,6 +29,6 @@
 	<label class="form-label" asp-for="Email">
 		Person Email
 	</label>
-	<input type="text" asp-for="Email" class="form-control" placeholder="name@example.com" required maxlength="75"
-		   data-required-message="Email is required.">
+	<input type="email" asp-for="Email" class="form-control" placeholder="name@example.com" required maxlength="75"
+		   data-required-message="Email is required." data-invalid-message="Email is invalid.">
 </div>

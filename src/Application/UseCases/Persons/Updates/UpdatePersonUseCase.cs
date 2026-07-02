@@ -7,6 +7,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
     using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity;
     using Ricardo.CleanArchitectureMVC.Application.Models;
     using Ricardo.CleanArchitectureMVC.Application.Models.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Models.Validations;
     using Ricardo.CleanArchitectureMVC.Application.Repositories;
     using Ricardo.CleanArchitectureMVC.Application.UserInfo;
     using Ricardo.CleanArchitectureMVC.Domain.Entities;
@@ -14,6 +15,11 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
     internal class UpdatePersonUseCase : IUpdatePersonUseCase
     {
+        private const string PersonCantBeUpdateMessage = "Person DNI Already Exist";
+        private const string PersonNotFoundMessage = "Person not found";
+        private const string PersonNonChangeMessage = "No changes to update";
+        private const string PersonDniExistMessage = "Person DNI Already Exist";
+
         private readonly IPersonRepository personRepository;
         private readonly IPersonsViewModelToPersonEntityConverter converter;
         private readonly IPersonUserDetails personUserDetails;
@@ -30,7 +36,12 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
         public async Task<Result<bool>> Execute(PersonViewModel sourceClass)
         {
-            Result<bool> validationResult = Validate(sourceClass);
+            if (sourceClass is null || sourceClass.Id == Guid.Empty)
+            {
+                return Result.Failure<bool>(PersonCantBeUpdateMessage);
+            }
+
+            Result<bool> validationResult = PersonViewModelValidator.Validate(sourceClass);
 
             if (validationResult.Errors.Any())
             {
@@ -43,12 +54,12 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
             if (currentPerson is null)
             {
-                return Result.Failure<bool>("Person not found");
+                return Result.Failure<bool>(PersonNotFoundMessage);
             }
 
             if (!sourceClass.HasChanges(currentPerson))
             {
-                return Result.Failure<bool>("No changes to update");
+                return Result.Failure<bool>(PersonNonChangeMessage);
             }
 
             bool hasDniChanged = !string.Equals(
@@ -62,7 +73,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
             if (hasDniChanged && existsDniDb)
             {
-                return Result.Failure<bool>("Person DNI Already Exist");
+                return Result.Failure<bool>(PersonDniExistMessage);
             }
 
             PersonEntity personEntity = this.converter.Convert(sourceClass);
@@ -70,36 +81,6 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
             bool result = await this.personRepository.UpdatePersonAsync(personEntity).ConfigureAwait(false);
 
             return Result.Success(result);
-        }
-
-        private static Result<bool> Validate(PersonViewModel sourceClass)
-        {
-            if (sourceClass?.Id is null || string.IsNullOrWhiteSpace(sourceClass?.DNI))
-            {
-                return Result.Failure<bool>("The person can't be updated");
-            }
-
-            if (sourceClass.DNI.Length != 9)
-            {
-                return Result.Failure<bool>("Person DNI must have 9 characters");
-            }
-
-            if (string.IsNullOrWhiteSpace(sourceClass.Name))
-            {
-                return Result.Failure<bool>("Person name is required");
-            }
-
-            if (sourceClass.Name.Length > 100)
-            {
-                return Result.Failure<bool>("Person name can't have more than 100 characters");
-            }
-
-            if (!sourceClass.HasValidPhone())
-            {
-                return Result.Failure<bool>("Person phone must contain exactly 9 numbers");
-            }
-
-            return Result.Success(true);
         }
     }
 }

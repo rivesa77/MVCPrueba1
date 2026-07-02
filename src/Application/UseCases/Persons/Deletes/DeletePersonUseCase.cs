@@ -12,6 +12,8 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Deletes
 
     internal class DeletePersonUseCase : IDeletePersonUseCase
     {
+        private const string PersonRequiredMessage = "Person is required";
+
         private readonly IPersonRepository personRepository;
         private readonly IPersonsViewModelToPersonEntityConverter converter;
 
@@ -25,7 +27,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Deletes
         {
             if (sourceClass is null)
             {
-                return Result.Failure<bool>("sourceClass is required");
+                return Result.Failure<bool>(PersonRequiredMessage);
             }
 
             PersonEntity personEntity = this.converter.Convert(sourceClass);

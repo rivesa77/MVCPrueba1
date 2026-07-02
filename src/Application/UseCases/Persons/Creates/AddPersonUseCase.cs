@@ -6,17 +6,14 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates
 {
     using Ricardo.CleanArchitectureMVC.Application.Converters.PersonsViewModel.ToPersonEntity;
     using Ricardo.CleanArchitectureMVC.Application.Models;
-    using Ricardo.CleanArchitectureMVC.Application.Models.Extensions;
+    using Ricardo.CleanArchitectureMVC.Application.Models.Validations;
     using Ricardo.CleanArchitectureMVC.Application.Repositories;
     using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using ROP;
 
     internal class AddPersonUseCase : IAddPersonUseCase
     {
-        private const string DniRequiredMessage = "Person DNI is required";
         private const string DniAlreadyExistMessage = "Person DNI Already Exist";
-        private const string DniInvalidMessage = "Person DNI must contain exactly 9 characters";
-        private const string PhoneInvalidMessage = "Person phone must contain exactly 9 numbers";
         private const string ConverterErrorMessage = "Conversion from PersonViewModel to PersonEntity failed, PersonEntity is null";
 
         private readonly IPersonRepository personRepository;
@@ -32,19 +29,11 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates
 
         public async Task<Result<bool>> Execute(PersonViewModel personViewModel)
         {
-            if (string.IsNullOrWhiteSpace(personViewModel?.DNI))
-            {
-                return Result.Failure<bool>(DniRequiredMessage);
-            }
+            Result<bool> validationResult = PersonViewModelValidator.Validate(personViewModel);
 
-            if (!personViewModel.HasValidDni())
+            if (validationResult.Errors.Any())
             {
-                return Result.Failure<bool>(DniInvalidMessage);
-            }
-
-            if (!personViewModel.HasValidPhone())
-            {
-                return Result.Failure<bool>(PhoneInvalidMessage);
+                return validationResult;
             }
 
             return await this.ValidatePerson(personViewModel)

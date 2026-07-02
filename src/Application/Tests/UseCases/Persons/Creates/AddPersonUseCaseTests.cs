@@ -10,6 +10,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
     using Ricardo.CleanArchitectureMVC.Application.Models;
     using Ricardo.CleanArchitectureMVC.Application.Repositories;
     using Ricardo.CleanArchitectureMVC.Application.Tests.Constants;
+    using Ricardo.CleanArchitectureMVC.Application.Tests.Models.Validations;
     using Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Creates;
     using Ricardo.CleanArchitectureMVC.Domain.Entities;
     using Ricardo.CommonLibraries.Extensions.Tests.Mocks;
@@ -19,10 +20,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
     [TestCategory("Application.UsesCases.AddPersonUseCase")]
     public class AddPersonUseCaseTests
     {
-        private const string DniRequiredMessage = "Person DNI is required";
         private const string DniAlreadyExistMessage = "Person DNI Already Exist";
-        private const string DniInvalidMessage = "Person DNI must contain exactly 9 characters";
-        private const string PhoneInvalidMessage = "Person phone must contain exactly 9 numbers";
         private const string ConverterErrorMessage = "Conversion from PersonViewModel to PersonEntity failed, PersonEntity is null";
 
         private static readonly PersonViewModel PersonViewModel = new PersonViewModel()
@@ -51,38 +49,6 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
         }
 
         [TestMethod]
-        [DataRow("12345678", DniInvalidMessage)]
-        [DataRow("1234567890", DniInvalidMessage)]
-        [DataRow(" ", DniRequiredMessage)]
-        [DataRow(null, DniRequiredMessage)]
-        public async Task Execute_WhenDniIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string dni, string messageError)
-        {
-            // Arrange.
-            AddPersonUseCase addPersonUseCase = this.ConfigureMockAndCreateAddPersonUseCase();
-
-            PersonViewModel personViewModel = default;
-
-            if (dni is not null)
-            {
-                personViewModel = new PersonViewModel()
-                {
-                    DNI = dni,
-                    Email = PersonConstants.Email,
-                    Name = PersonConstants.Name,
-                    Phone = PersonConstants.Phone,
-                };
-            }
-
-            // Act.
-            Result<bool> result = await addPersonUseCase
-                .Execute(personViewModel)
-                .ConfigureAwait(false);
-
-            // Assert.
-            ValidateExpectResult(result, messageError);
-        }
-
-        [TestMethod]
         public async Task Execute_WhenDniExist_ReturnsMessageErrorAndCallRepository()
         {
             // Arrange.
@@ -102,21 +68,24 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
         }
 
         [TestMethod]
-        [DataRow("12345678")]
-        [DataRow("1234567890")]
-        [DataRow("12345678A")]
-        public async Task Execute_WhenPhoneIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(string phone)
+        [DataRow(PersonViewModelField.Name, null, ValidatorConstantTests.NameRequiredMessage)]
+        [DataRow(PersonViewModelField.Email, "invalid-email", ValidatorConstantTests.EmailInvalidMessage)]
+        [DataRow(PersonViewModelField.Phone, "60000000", ValidatorConstantTests.PhoneInvalidMessage)]
+        [DataRow(PersonViewModelField.Phone, "6000000000", ValidatorConstantTests.PhoneInvalidMessage)]
+        [DataRow(PersonViewModelField.Phone, "60000000A", ValidatorConstantTests.PhoneInvalidMessage)]
+        [DataRow(PersonViewModelField.Dni, "12345678", ValidatorConstantTests.DniInvalidMessage)]
+        [DataRow(PersonViewModelField.Dni, "1234567890", ValidatorConstantTests.DniInvalidMessage)]
+        [DataRow(PersonViewModelField.Dni, " ", ValidatorConstantTests.DniRequiredMessage)]
+        [DataRow(PersonViewModelField.Dni, null, ValidatorConstantTests.DniRequiredMessage)]
+        public async Task Execute_WhenPersonDataIsInvalid_ReturnsMessageErrorAndDoesNotCallRepository(
+            PersonViewModelField propertyName,
+            string value,
+            string messageError)
         {
             // Arrange.
             AddPersonUseCase addPersonUseCase = this.ConfigureMockAndCreateAddPersonUseCase();
 
-            PersonViewModel personViewModel = new PersonViewModel()
-            {
-                DNI = PersonConstants.Dni,
-                Email = PersonConstants.Email,
-                Name = PersonConstants.Name,
-                Phone = phone,
-            };
+            PersonViewModel personViewModel = PersonViewModelHelper.SetValueInProperty(propertyName, value);
 
             // Act.
             Result<bool> result = await addPersonUseCase
@@ -124,7 +93,7 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.UseCases.Persons.Create
                 .ConfigureAwait(false);
 
             // Assert.
-            ValidateExpectResult(result, PhoneInvalidMessage);
+            ValidateExpectResult(result, messageError);
         }
 
         [TestMethod]

@@ -69,6 +69,7 @@ Ejemplos:
 src/Application/UseCases
 src/Application/Repositories/IPersonRepository.cs
 src/Application/Models
+src/Application/Models/Validation
 src/Application/Converters
 ```
 
@@ -111,10 +112,11 @@ PersonEntity personEntity = this.converter.Convert(personViewModel);
 El flujo utilizado por `AddPersonUseCase` es:
 
 1. La UI entrega un `PersonViewModel` al caso de uso.
-2. El caso de uso valida los datos.
-3. `IPersonsViewModelToPersonEntityConverter` crea un `PersonEntity`.
-4. Los converters de propiedad rellenan y transforman sus campos.
-5. El caso de uso entrega la entidad resultante a `IPersonRepository`.
+2. El caso de uso delega las reglas comunes de DNI, nombre, telefono y email en `PersonViewModelValidator`.
+3. El caso de uso comprueba las reglas propias del alta, como que el DNI no este duplicado.
+4. `IPersonsViewModelToPersonEntityConverter` crea un `PersonEntity`.
+5. Los converters de propiedad rellenan y transforman sus campos.
+6. El caso de uso entrega la entidad resultante a `IPersonRepository`.
 
 El mismo enfoque se utiliza para convertir `PersonEntity` en `PersonViewModel` al mostrar datos y
 `PersonSearchCriteria` en `PersonSearchQuery` al realizar busquedas.
@@ -188,15 +190,16 @@ Password: Demo1234!
 Los tests utilizan MSTest como framework de pruebas, Fluent Assertions para expresar las comprobaciones y Moq para
 crear, configurar y verificar mocks. Actualmente existen tres proyectos de pruebas:
 
-- `src/Application/Tests`: comprueba converters, el registro de converters en inyeccion de dependencias y distintos
-  escenarios de `AddPersonUseCase`, como datos no validos, DNI duplicado, fallo de conversion y resultado correcto.
+- `src/Application/Tests`: comprueba converters, el registro de converters en inyeccion de dependencias, las reglas
+  comunes de `PersonViewModelValidator` y escenarios de validacion de los casos de uso de alta y actualizacion.
 - `src/Infrastructure/Tests`: prueba `PersonRepository` con EF Core InMemory, incluyendo persistencia, busqueda,
   filtrado y ordenacion.
 - `src/E2E/Tests`: contiene un flujo E2E con `WebApplicationFactory`, registro de usuario, creacion de personas,
   busqueda y ordenacion. Consulta su [documentacion especifica](src/E2E/Tests/README.md).
 
-En cuanto a los casos de uso, por ahora solo existe una bateria de tests de `AddPersonUseCase` creada principalmente
-para mostrar como crear, configurar, utilizar y verificar mocks con Moq para el repositorio y el converter.
+Los tests de `AddPersonUseCase` muestran como crear, configurar, utilizar y verificar mocks con Moq para el repositorio
+y el converter. `UpdatePersonUseCase` tambien comprueba que los datos no validos detienen el flujo antes de invocar a
+sus colaboradores.
 
 Estas pruebas tienen un objetivo demostrativo y no cubren todos los casos de uso, controladores, reglas de negocio ni
 escenarios de error. El proyecto no tiene una cobertura del 100 % y no debe interpretarse la suite actual como una
