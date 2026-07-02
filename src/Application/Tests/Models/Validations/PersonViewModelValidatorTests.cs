@@ -34,6 +34,19 @@ namespace Ricardo.CleanArchitectureMVC.Application.Tests.Models.Validations
         }
 
         [TestMethod]
+        public void Validate_WhenPersonViewModelIsNull_ReturnsExpectedError()
+        {
+            // Arrange.
+            PersonViewModel personViewModel = null;
+
+            // Act.
+            Result<bool> result = PersonViewModelValidator.Validate(personViewModel);
+
+            // Assert.
+            ValidateFailure(result, ValidatorConstantTests.DniRequiredMessage);
+        }
+
+        [TestMethod]
         [DataRow(null, ValidatorConstantTests.DniRequiredMessage)]
         [DataRow(" ", ValidatorConstantTests.DniRequiredMessage)]
         [DataRow("12345678", ValidatorConstantTests.DniInvalidMessage)]
