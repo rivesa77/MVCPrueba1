@@ -67,13 +67,16 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
                 currentPerson.DNI,
                 StringComparison.Ordinal);
 
-            bool existsDniDb = await this.personRepository
-                .ExistsByDniAndIdAsync(sourceClass.DNI, sourceClass.Id)
-                .ConfigureAwait(false);
-
-            if (hasDniChanged && existsDniDb)
+            if (hasDniChanged)
             {
-                return Result.Failure<bool>(PersonDniExistMessage);
+                bool personDniExist = await this.personRepository
+                    .ExistsByDniAndIdAsync(sourceClass.DNI, sourceClass.Id)
+                    .ConfigureAwait(false);
+
+                if (personDniExist)
+                {
+                    return Result.Failure<bool>(PersonDniExistMessage);
+                }
             }
 
             PersonEntity personEntity = this.converter.Convert(sourceClass);
