@@ -19,7 +19,6 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Extensions
                 .AddScoped<IAddPersonUseCase, AddPersonUseCase>()
                 .AddScoped<IDeletePersonUseCase, DeletePersonUseCase>()
                 .AddScoped<IGetPersonUseCase, GetPersonUseCase>()
-                .AddScoped<IGetPersonsUseCase, GetPersonsUseCase>()
                 .AddScoped<ISearchPersonsUseCase, SearchPersonsUseCase>()
                 .AddScoped<IUpdatePersonUseCase, UpdatePersonUseCase>();
 
