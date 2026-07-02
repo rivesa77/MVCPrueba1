@@ -80,6 +80,11 @@ namespace Ricardo.CleanArchitectureMVC.Application.UseCases.Persons.Updates
 
             bool result = await this.personRepository.UpdatePersonAsync(personEntity).ConfigureAwait(false);
 
+            if (!result)
+            {
+                return Result.Failure<bool>(PersonCantBeUpdateMessage);
+            }
+
             return Result.Success(result);
         }
     }
